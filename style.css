@@ -1,0 +1,80 @@
+body {
+    margin: 0px;
+    font-family: 'Inconsolata', monospace;
+    padding: 0px;
+    background-color: #08040E;
+}
+html{
+    scroll-behavior: smooth;
+}
+::selection {
+    background-color: rgb(119, 0, 255);
+    color: white;
+  }
+.main{
+    display: flex;
+}
+.picture{
+    flex: 1;
+}
+.console{
+    line-height: 25px;
+    flex: 5;
+    height: 99vh;
+    overflow-y: auto;
+}
+.root{
+    vertical-align: top;
+    color: #3DF49C;
+}
+.root_value{
+    color: white;
+}
+.outputs{
+    padding: 50px;
+}
+
+.image {
+    height: 99vh;
+    width: 20vw;
+    object-fit: cover;
+    opacity: 0.5;
+}
+.console_heading{
+    background-color: #3DF49C;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.red{
+    background-color: #EF3D3D;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  /* Track */
+  /* ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  } */
+  
+  /* Handle */
+  /* ::-webkit-scrollbar-thumb {
+    background: #888;
+  } */
+  
+  /* Handle on hover */
+  /* ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */
+
+
+  @media only screen and (max-width: 1000px) {
+    .image{
+        display: none;
+    }
+    .picture{
+        flex: 0;
+    }
+  }
