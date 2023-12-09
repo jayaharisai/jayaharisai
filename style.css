@@ -18,7 +18,7 @@ html{
     flex: 1;
 }
 .console{
-    line-height: 25px;
+    line-height: 30px;
     flex: 5;
     height: 99vh;
     overflow-y: auto;
@@ -39,7 +39,12 @@ html{
     width: 20vw;
     object-fit: cover;
     opacity: 0.5;
+    transition: 300ms;
 }
+/* .image:hover{
+    
+    width: 50vw;
+} */
 .console_heading{
     background-color: #3DF49C;
     font-weight: 700;
@@ -49,6 +54,7 @@ html{
 .red{
     background-color: #EF3D3D;
 }
+
 /* width */
 ::-webkit-scrollbar {
     width: 0px;
@@ -68,8 +74,27 @@ html{
   /* ::-webkit-scrollbar-thumb:hover {
     background: #555;
   } */
+.description{
+    display: flex;
+}
 
-
+.diss{
+    flex: 1;
+}
+.hr{
+    height: 2px;
+    background-color: white;
+}
+.dis{
+    color: white;
+    flex: 10;
+    padding: 0px 80px;
+}
+.dis_img{
+    width: 20vw;
+    height: 100%;
+    object-fit: cover;
+}
   @media only screen and (max-width: 1000px) {
     .image{
         display: none;
