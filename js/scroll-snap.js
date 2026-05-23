@@ -13,20 +13,6 @@ class FullPageScroll {
     }
 
     init() {
-        // Disable full-page scroll on mobile and tablets
-        const isMobileOrTablet = window.innerWidth <= 1024;
-        if (isMobileOrTablet) {
-            // Enable normal scrolling for mobile/tablet
-            document.documentElement.style.overflow = 'auto';
-            document.body.style.overflow = 'auto';
-            const mainEl = document.querySelector('main');
-            if (mainEl) {
-                mainEl.style.height = 'auto';
-                mainEl.style.overflow = 'visible';
-            }
-            return; // Exit - don't initialize full-page scroll
-        }
-
         // Get hero section first, then other sections in order
         const heroSection = document.querySelector('.hero-section');
         const otherSections = Array.from(document.querySelectorAll('.section'));

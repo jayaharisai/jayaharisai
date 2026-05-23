@@ -39,43 +39,37 @@
     user-select: none;
 }
 
-/* Tablets and below (1200px and 1024px) - Disable full-page scroll */
+/* Tablets and below (1024px) - Keep scroll animations but fix overflow */
 @media (max-width: 1024px) {
-    /* Override fixed positioning - use normal scroll */
-    .hero-section,
+    /* Keep section animations but ensure proper scrolling within sections */
     .section {
-        position: static !important;
-        height: auto !important;
-        min-height: auto !important;
-        transform: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        overflow: visible !important;
-        padding: 80px 0 60px 0;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
     }
 
     .hero-section {
-        min-height: calc(100vh - 73px);
-        padding: 100px 20px 60px 20px;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Show all sections by default */
-    .section.active,
-    .section.prev {
-        position: static !important;
-        transform: none !important;
+    /* Ensure sections can scroll their content */
+    .section .container {
+        min-height: auto;
     }
 
-    /* Remove fade-in animations for mobile */
-    .section .container > * {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-    }
-
-    /* Hide scroll indicator on mobile */
+    /* Scale down scroll indicator on mobile but keep it visible */
     .scroll-indicator {
-        display: none !important;
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .scroll-indicator svg {
+        width: 50px;
+        height: 50px;
     }
 }
 

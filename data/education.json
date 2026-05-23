@@ -1,11 +1,13 @@
 {
   "education": [
     {
-      "degree": "Bachelor of Technology in Mechanical Engineering",
+      "degree": "Bachelor of Technology (B.Tech) in Mechanical Engineering",
       "institution": "Institute of Aeronautical Engineering",
+      "location": "Dundigal, Hyderabad, Telangana",
       "startDate": "2017-06",
       "endDate": "2021-06",
-      "description": "Dundigal, Hyderabad, Telangana"
+      "graduationDate": "2021-06",
+      "description": "Specialized in Mechanical Engineering with focus on automation and intelligent systems. Transitioned to software development and AI/ML during undergraduate studies, building strong foundation in problem-solving and systematic thinking."
     }
   ]
 }
