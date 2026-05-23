@@ -12,6 +12,7 @@ html {
     overflow: hidden;
 }
 
+/* Desktop: use full-page scroll */
 body {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
@@ -26,6 +27,25 @@ main {
     height: 100vh;
     overflow: hidden;
     position: relative;
+}
+
+/* Mobile and Tablet: use normal scroll */
+@media (max-width: 1024px) {
+    html {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    body {
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    main {
+        height: auto;
+        overflow: visible;
+    }
 }
 
 /* Container */

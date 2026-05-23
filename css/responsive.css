@@ -39,7 +39,46 @@
     user-select: none;
 }
 
-/* Tablets and below (1200px) */
+/* Tablets and below (1200px and 1024px) - Disable full-page scroll */
+@media (max-width: 1024px) {
+    /* Override fixed positioning - use normal scroll */
+    .hero-section,
+    .section {
+        position: static !important;
+        height: auto !important;
+        min-height: auto !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        overflow: visible !important;
+        padding: 80px 0 60px 0;
+    }
+
+    .hero-section {
+        min-height: calc(100vh - 73px);
+        padding: 100px 20px 60px 20px;
+    }
+
+    /* Show all sections by default */
+    .section.active,
+    .section.prev {
+        position: static !important;
+        transform: none !important;
+    }
+
+    /* Remove fade-in animations for mobile */
+    .section .container > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Hide scroll indicator on mobile */
+    .scroll-indicator {
+        display: none !important;
+    }
+}
+
 @media (max-width: 1200px) {
     .container {
         padding: 0 20px;
@@ -91,10 +130,22 @@
     .nav-link {
         display: block;
         padding: 16px 24px;
+        border-radius: 0;
+        color: var(--text-primary);
     }
 
-    .nav-link.active::after {
-        display: none;
+    .nav-link:hover {
+        background-color: var(--bg-secondary);
+    }
+
+    .nav-link.active {
+        background-color: var(--accent);
+        color: white;
+    }
+
+    /* Hide the pill indicator on mobile */
+    .nav-menu::before {
+        display: none !important;
     }
 
     .mobile-menu-toggle {
