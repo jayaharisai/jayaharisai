@@ -1,22 +1,72 @@
 {
   "projects": [
     {
-      "name": "MLAngles | MLOps",
-      "description": "Enterprise MLOps platform where data engineers and data scientists can seamlessly create, deploy, and monitor machine learning operations all in one place.",
-      "technologies": ["Python", "FastAPI", "Docker", "Kubernetes", "MLflow", "AWS", "PostgreSQL"],
+      "name": "MLAngles | MLOps Platform",
+      "description": "Enterprise-grade MLOps platform enabling data engineers and data scientists to create, deploy, and monitor machine learning operations seamlessly. Features include model versioning, experiment tracking, automated deployment pipelines, and real-time monitoring.",
+      "technologies": ["Python", "FastAPI", "Docker", "Kubernetes", "MLflow", "AWS EC2", "PostgreSQL", "Redis", "Prometheus"],
       "logo": "https://www.mlangles.ai/mlangles-new-logo.png",
+      "featured": true,
       "links": {
         "demo": "https://www.mlangles.ai/"
-      }
+      },
+      "highlights": [
+        "Deployed scalable MLOps infrastructure on AWS",
+        "Integrated MLflow for experiment tracking and model registry",
+        "Built automated CI/CD pipelines for ML model deployment",
+        "Implemented real-time model monitoring and alerting"
+      ]
     },
     {
-      "name": "MLAngles | LLMOps",
-      "description": "Advanced LLMOps platform for AI engineers focused on LLM operations, fine-tuning, quantization, RAG (Retrieval-Augmented Generation), and AI agents.",
-      "technologies": ["Python", "LangChain", "FastAPI", "vLLM", "RAG", "Docker", "Kubernetes", "AWS"],
+      "name": "MLAngles | LLMOps Platform",
+      "description": "Advanced LLMOps platform for AI engineers focused on Large Language Model operations, fine-tuning, quantization, RAG (Retrieval-Augmented Generation), and autonomous AI agents. Supports multiple LLM frameworks and deployment strategies.",
+      "technologies": ["Python", "LangChain", "LangGraph", "FastAPI", "vLLM", "RAG", "Docker", "Kubernetes", "AWS", "Vector DBs"],
       "logo": "https://www.mlangles.ai/mlangles-new-logo.png",
+      "featured": true,
       "links": {
         "demo": "https://www.mlangles.ai/"
-      }
+      },
+      "highlights": [
+        "Architected RAG pipelines with vector databases",
+        "Implemented LLM fine-tuning and quantization workflows",
+        "Built AI agent orchestration with LangGraph",
+        "Optimized inference with vLLM for 60% faster responses"
+      ]
+    },
+    {
+      "name": "Intelligent Document Processing System",
+      "description": "AI-powered document processing system that extracts, classifies, and analyzes information from various document formats using NLP and computer vision techniques.",
+      "technologies": ["Python", "PyTorch", "OpenCV", "FastAPI", "PostgreSQL", "Docker"],
+      "featured": false,
+      "highlights": [
+        "Implemented OCR with 95%+ accuracy",
+        "Built custom NER models for entity extraction",
+        "Automated document classification pipeline",
+        "Processed 10,000+ documents monthly"
+      ]
+    },
+    {
+      "name": "Real-time Analytics Dashboard",
+      "description": "Full-stack real-time analytics dashboard for monitoring business metrics with live data streaming, interactive visualizations, and automated reporting.",
+      "technologies": ["React", "Python", "FastAPI", "WebSockets", "PostgreSQL", "Redis", "Chart.js", "Docker"],
+      "featured": false,
+      "highlights": [
+        "Real-time data streaming with WebSockets",
+        "Interactive data visualizations",
+        "Automated alert system",
+        "Multi-tenant architecture"
+      ]
+    },
+    {
+      "name": "Microservices E-Commerce Backend",
+      "description": "Scalable microservices-based e-commerce backend with separate services for inventory, orders, payments, and user management. Containerized and orchestrated with Kubernetes.",
+      "technologies": ["Python", "FastAPI", "Docker", "Kubernetes", "PostgreSQL", "Redis", "RabbitMQ", "AWS"],
+      "featured": false,
+      "highlights": [
+        "Microservices architecture with 5+ services",
+        "Event-driven communication with RabbitMQ",
+        "Implemented circuit breaker patterns",
+        "Auto-scaling based on load"
+      ]
     }
   ]
 }
