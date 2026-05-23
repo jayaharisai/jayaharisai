@@ -433,11 +433,17 @@ class FullPageScroll {
     }
 }
 
-// Initialize full page scroll
+// Initialize full page scroll - DESKTOP ONLY
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        new FullPageScroll();
+        // Only initialize on desktop
+        if (window.innerWidth > 1024) {
+            new FullPageScroll();
+        }
     });
 } else {
-    new FullPageScroll();
+    // Only initialize on desktop
+    if (window.innerWidth > 1024) {
+        new FullPageScroll();
+    }
 }

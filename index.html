@@ -259,8 +259,20 @@
 
     <script src="js/lazy-load.js" defer></script>
     <script src="js/neural-network.js" defer></script>
-    <script src="js/scroll-snap.js" defer></script>
-    <script src="js/scroll-indicator.js" defer></script>
+    <!-- Only load scroll-snap on desktop (>1024px) -->
+    <script>
+        if (window.innerWidth > 1024) {
+            const scrollSnapScript = document.createElement('script');
+            scrollSnapScript.src = 'js/scroll-snap.js';
+            scrollSnapScript.defer = true;
+            document.head.appendChild(scrollSnapScript);
+
+            const scrollIndicatorScript = document.createElement('script');
+            scrollIndicatorScript.src = 'js/scroll-indicator.js';
+            scrollIndicatorScript.defer = true;
+            document.head.appendChild(scrollIndicatorScript);
+        }
+    </script>
     <script src="js/data-loader.js" defer></script>
     <script src="js/main.js" defer></script>
 
