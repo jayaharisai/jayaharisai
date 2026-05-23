@@ -6,10 +6,11 @@
 }
 
 html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     font-size: 16px;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 body {
@@ -18,13 +19,14 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
-    height: 100%;
-    overflow: hidden;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 main {
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
     position: relative;
 }
 
@@ -216,66 +218,64 @@ main {
 
 /* Sections */
 .section {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: static;
+    top: auto;
+    left: auto;
     width: 100%;
-    height: 100vh;
-    padding: 140px 0 80px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(100%);
-    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease, visibility 1s ease;
-    z-index: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
+    height: auto;
+    min-height: auto;
+    padding: 80px 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+    z-index: auto;
+    overflow: visible;
 }
 
 .section.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
-    z-index: 2;
+    transform: none;
+    z-index: auto;
 }
 
 .section.prev {
-    transform: translateY(-100%);
-    z-index: 1;
+    transform: none;
+    z-index: auto;
 }
 
-/* Content fade-in animation */
+/* Content - no animations */
 .section .container > * {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 1;
+    transform: none;
+    transition: none;
 }
 
 .section.active .container > * {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 .section.active .container > *:nth-child(1) {
-    transition-delay: 0.3s;
+    transition-delay: 0s;
 }
 
 .section.active .container > *:nth-child(2) {
-    transition-delay: 0.4s;
+    transition-delay: 0s;
 }
 
 .section.active .container > *:nth-child(3) {
-    transition-delay: 0.5s;
+    transition-delay: 0s;
 }
 
 .section.active .container > *:nth-child(4) {
-    transition-delay: 0.6s;
+    transition-delay: 0s;
 }
 
 .section .container {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: auto;
+    display: block;
 }
 
 /* Custom scrollbar for sections */
@@ -311,21 +311,21 @@ main {
 
 /* Hero Section */
 .hero-section {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: static;
+    top: auto;
+    left: auto;
     width: 100%;
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 140px 24px 80px 24px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: visible;
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
-    z-index: 2;
-    transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease, visibility 1s ease;
+    transform: none;
+    z-index: auto;
+    transition: none;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
@@ -336,19 +336,19 @@ main {
 .hero-section.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
-    z-index: 2;
+    transform: none;
+    z-index: auto;
 }
 
 .hero-section:not(.active) {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-100%);
-    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    z-index: auto;
 }
 
 .hero-section.prev {
-    transform: translateY(-100%);
+    transform: none;
 }
 
 /* Hero content fade-in */
