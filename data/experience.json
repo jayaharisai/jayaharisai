@@ -1,0 +1,38 @@
+{
+  "experience": [
+    {
+      "company": "Cloud Angles",
+      "logo": "https://cdn.sanity.io/images/4fcly6h5/production/4da5eae6c8a7a42b59944763eb534c76afd3888f-466x98.svg",
+      "position": "Software Engineer - AI/ML & Platform Development",
+      "startDate": "2021-12",
+      "endDate": "Present",
+      "description": "Leading AI/ML initiatives and platform development as a team leader managing 7 engineers. Architecting and deploying intelligent systems with focus on LLMs, backend infrastructure, and cloud solutions.",
+      "achievements": [
+        "Architected and deployed enterprise-grade LLM solutions with fine-tuning and quantization pipelines",
+        "Led a team of 7 engineers in building scalable AI/ML platforms and backend systems",
+        "Built production-ready RAG pipelines and implemented vLLMs for optimized inference",
+        "Designed and deployed microservices architecture on AWS EC2 with Docker and Kubernetes",
+        "Reduced model inference time by 60% through optimization and quantization techniques",
+        "Established best practices for LLM deployment, monitoring, and scaling"
+      ],
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "Flask",
+        "Django",
+        "LangChain",
+        "LangGraph",
+        "PyTorch",
+        "PySpark",
+        "AWS",
+        "EC2",
+        "Docker",
+        "Kubernetes",
+        "SQL",
+        "RAG",
+        "vLLM",
+        "LLM Fine-tuning"
+      ]
+    }
+  ]
+}

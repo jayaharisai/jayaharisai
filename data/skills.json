@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "name": "Programming Languages",
+      "skills": [
+        "Python",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "name": "Frontend Development",
+      "skills": [
+        "React.js",
+        "HTML5",
+        "CSS"
+      ]
+    },
+    {
+      "name": "Backend & API Development",
+      "skills": [
+        "FastAPI",
+        "Flask",
+        "Django",
+        "API Development",
+        "Python"
+      ]
+    },
+    {
+      "name": "AI/ML & Deep Learning",
+      "skills": [
+        "Machine Learning",
+        "Deep Learning",
+        "PyTorch",
+        "scikit-learn",
+        "LangChain",
+        "LangGraph",
+        "vLLM"
+      ]
+    },
+    {
+      "name": "Data Science & Engineering",
+      "skills": [
+        "Pandas",
+        "NumPy",
+        "PySpark",
+        "Data Engineering",
+        "Airflow",
+        "DVC"
+      ]
+    },
+    {
+      "name": "DevOps & Cloud",
+      "skills": [
+        "Docker",
+        "Docker Compose",
+        "Kubernetes",
+        "AWS",
+        "Azure",
+        "AI Foundry",
+        "Jenkins",
+        "CI/CD"
+      ]
+    }
+  ]
+}

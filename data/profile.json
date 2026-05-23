@@ -1,0 +1,15 @@
+{
+  "name": "Tothala Jayaharisai",
+  "nickname": "Jay",
+  "title": "Software Engineer & AI/ML Backend Engineer",
+  "tagline": "Building intelligent systems and scalable backend solutions",
+  "bio": "Hey there! Thanks for taking the time to get to know me. So here's the thing – I started my journey as a Mechanical Engineer in Hyderabad, India. You know, gears, machines, thermodynamics – the whole deal. But somewhere along the way, I realized something: I was more fascinated by the idea of making things 'think' than just making them move.\n\nMy days weren't just about engineering though. I've always been someone who loves traveling and exploring new places. There's something about discovering hidden cafes in old city lanes or hiking up a trail that nobody talks about. That curiosity? It spilled over into my code.\n\nThe turning point came when I picked up Python. What started as just another programming language quickly became my tool for creation. I began building things – automating stuff, solving problems, and before I knew it, I was neck-deep in the world of AI and Machine Learning. And honestly? It felt like home.\n\nNow, I spend my time building intelligent systems that don't just work – they learn, adapt, and actually solve real problems. From backend architectures to machine learning models, I'm all about creating solutions that make people go, 'Wait, how did it do that?'\n\nWhat drives me? Simple. That rush you get when your model finally clicks, when your code solves something that seemed impossible, or when you explore a new place and find something unexpectedly beautiful. It's all connected – the exploration, the creation, the constant learning.\n\nSo yeah, that's me. A mechanical engineer turned Python developer turned AI/ML enthusiast, always ready for the next adventure – whether it's in code or on the road.",
+  "email": "jayaharisai@example.com",
+  "location": "Your Location",
+  "social": {
+    "github": "jayaharisai",
+    "linkedin": "jayaharisai",
+    "twitter": "jayaharisai"
+  },
+  "avatar": "https://images.pexels.com/photos/37097315/pexels-photo-37097315.jpeg"
+}

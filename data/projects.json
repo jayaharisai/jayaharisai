@@ -1,0 +1,22 @@
+{
+  "projects": [
+    {
+      "name": "MLAngles | MLOps",
+      "description": "Enterprise MLOps platform where data engineers and data scientists can seamlessly create, deploy, and monitor machine learning operations all in one place.",
+      "technologies": ["Python", "FastAPI", "Docker", "Kubernetes", "MLflow", "AWS", "PostgreSQL"],
+      "logo": "https://www.mlangles.ai/mlangles-new-logo.png",
+      "links": {
+        "demo": "https://www.mlangles.ai/"
+      }
+    },
+    {
+      "name": "MLAngles | LLMOps",
+      "description": "Advanced LLMOps platform for AI engineers focused on LLM operations, fine-tuning, quantization, RAG (Retrieval-Augmented Generation), and AI agents.",
+      "technologies": ["Python", "LangChain", "FastAPI", "vLLM", "RAG", "Docker", "Kubernetes", "AWS"],
+      "logo": "https://www.mlangles.ai/mlangles-new-logo.png",
+      "links": {
+        "demo": "https://www.mlangles.ai/"
+      }
+    }
+  ]
+}

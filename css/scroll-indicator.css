@@ -1,0 +1,120 @@
+/* Scroll Indicator at Bottom Right */
+.scroll-indicator {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Progress Circle */
+.scroll-progress-ring {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.scroll-progress-ring svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+}
+
+.scroll-progress-ring circle {
+    fill: none;
+    stroke-width: 3;
+}
+
+.scroll-progress-ring .progress-bg {
+    stroke: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .scroll-progress-ring .progress-bg {
+    stroke: rgba(255, 255, 255, 0.15);
+}
+
+.scroll-progress-ring .progress-bar {
+    stroke: var(--accent);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Arrow Icon */
+.scroll-arrow-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+.scroll-indicator.at-bottom .scroll-arrow-icon {
+    animation: bounceDown 1.5s ease-in-out infinite;
+}
+
+.scroll-indicator.ready-next .scroll-arrow-icon {
+    animation: pulseNext 1s ease-in-out infinite;
+}
+
+/* Position Text */
+.scroll-position-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes bounceDown {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(4px);
+    }
+}
+
+@keyframes pulseNext {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .scroll-progress-ring {
+        width: 50px;
+        height: 50px;
+    }
+
+    .scroll-arrow-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
