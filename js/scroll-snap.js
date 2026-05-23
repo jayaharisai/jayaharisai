@@ -180,11 +180,11 @@ class FullPageScroll {
             // Special handling for hero section (usually doesn't scroll)
             const isHeroSection = activeSection.classList.contains('hero-section');
 
-            // Check if section has scrollable content
-            const hasScroll = activeSection.scrollHeight > activeSection.clientHeight + 10;
+            // Check if section has scrollable content with better tolerance
+            const hasScroll = activeSection.scrollHeight > activeSection.clientHeight + 20;
 
             if (hasScroll) {
-                // Section has scrollable content
+                // Section has scrollable content - allow scrolling within section
                 const atTop = this.isAtTop(activeSection);
                 const atBottom = this.isAtBottom(activeSection);
 
@@ -192,7 +192,7 @@ class FullPageScroll {
                     // At bottom and scrolling down - go to next section
                     e.preventDefault();
 
-                    if (now - lastWheelTime > 200) {
+                    if (now - lastWheelTime > 300) {
                         wheelDelta = 0;
                     }
 
@@ -201,16 +201,16 @@ class FullPageScroll {
 
                     clearTimeout(wheelTimeout);
                     wheelTimeout = setTimeout(() => {
-                        if (wheelDelta > 30) {
+                        if (wheelDelta > 50) { // Increased threshold
                             this.nextSection();
                             wheelDelta = 0;
                         }
-                    }, 100);
+                    }, 150);
                 } else if (scrollingUp && atTop) {
                     // At top and scrolling up - go to previous section
                     e.preventDefault();
 
-                    if (now - lastWheelTime > 200) {
+                    if (now - lastWheelTime > 300) {
                         wheelDelta = 0;
                     }
 
@@ -219,18 +219,20 @@ class FullPageScroll {
 
                     clearTimeout(wheelTimeout);
                     wheelTimeout = setTimeout(() => {
-                        if (wheelDelta > 30) {
+                        if (wheelDelta > 50) { // Increased threshold
                             this.prevSection();
                             wheelDelta = 0;
                         }
-                    }, 100);
+                    }, 150);
+                } else {
+                    // Not at edge - allow normal scrolling within section
+                    // Don't prevent default here
                 }
-                // Otherwise allow natural scrolling
             } else {
                 // No scrollable content (like hero section) - directly navigate
                 e.preventDefault();
 
-                if (now - lastWheelTime > 200) {
+                if (now - lastWheelTime > 300) {
                     wheelDelta = 0;
                 }
 
@@ -239,7 +241,7 @@ class FullPageScroll {
 
                 clearTimeout(wheelTimeout);
                 wheelTimeout = setTimeout(() => {
-                    if (wheelDelta > 30) {
+                    if (wheelDelta > 50) {
                         if (scrollingDown) {
                             this.nextSection();
                         } else {
@@ -247,7 +249,7 @@ class FullPageScroll {
                         }
                         wheelDelta = 0;
                     }
-                }, 100);
+                }, 150);
             }
         }, { passive: false });
     }
@@ -318,6 +320,15 @@ class FullPageScroll {
 
                 if (targetId) {
                     e.preventDefault();
+
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 1024) {
+                        const navMenu = document.querySelector('.nav-menu');
+                        const menuToggle = document.querySelector('.mobile-menu-toggle');
+                        if (navMenu) navMenu.classList.remove('active');
+                        if (menuToggle) menuToggle.classList.remove('active');
+                    }
+
                     const targetIndex = this.sections.findIndex(section =>
                         section.id === targetId
                     );
@@ -326,6 +337,9 @@ class FullPageScroll {
                         // Force immediate transition for navigation clicks
                         this.isScrolling = false;
                         this.showSection(targetIndex, targetIndex > this.currentSection ? 'next' : 'prev');
+                    } else if (targetIndex === this.currentSection) {
+                        // Already on this section - just ensure it's visible
+                        this.showSection(targetIndex, 'next');
                     }
                 }
             });
@@ -342,6 +356,15 @@ class FullPageScroll {
                 // Handle hash links
                 if (href && href.startsWith('#')) {
                     e.preventDefault();
+
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 1024) {
+                        const navMenu = document.querySelector('.nav-menu');
+                        const menuToggle = document.querySelector('.mobile-menu-toggle');
+                        if (navMenu) navMenu.classList.remove('active');
+                        if (menuToggle) menuToggle.classList.remove('active');
+                    }
+
                     const targetId = href.substring(1);
                     const targetIndex = this.sections.findIndex(section =>
                         section.id === targetId
