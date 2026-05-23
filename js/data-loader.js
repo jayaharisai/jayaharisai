@@ -31,9 +31,21 @@ async function renderHero() {
 
     // Load profile image
     const profileImg = document.getElementById('hero-profile-img');
-    if (profileImg && data.avatar) {
-        profileImg.src = data.avatar;
-        profileImg.alt = data.name || 'Profile';
+    if (profileImg) {
+        if (data.avatar) {
+            profileImg.src = data.avatar;
+            profileImg.alt = data.name || 'Profile';
+
+            // Add error handler for fallback
+            profileImg.onerror = function() {
+                // Use a gradient placeholder if image fails to load
+                this.style.background = 'linear-gradient(135deg, var(--accent), var(--secondary))';
+                this.src = ''; // Clear broken image icon
+            };
+        } else {
+            // No avatar provided - use gradient placeholder
+            profileImg.style.background = 'linear-gradient(135deg, #e26d5c, #6366f1)';
+        }
     }
 }
 
