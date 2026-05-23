@@ -39,37 +39,11 @@
     user-select: none;
 }
 
-/* Tablets and below (1024px) - Keep scroll animations but fix overflow */
+/* Tablets and below (1024px) - Static scrolling handled by main-desktop-animations.css */
 @media (max-width: 1024px) {
-    /* Keep section animations but ensure proper scrolling within sections */
-    .section {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .hero-section {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Ensure sections can scroll their content */
-    .section .container {
-        min-height: auto;
-    }
-
-    /* Scale down scroll indicator on mobile but keep it visible */
+    /* Hide scroll indicator completely on mobile */
     .scroll-indicator {
-        width: 50px;
-        height: 50px;
-        bottom: 15px;
-        right: 15px;
-    }
-
-    .scroll-indicator svg {
-        width: 50px;
-        height: 50px;
+        display: none !important;
     }
 }
 
