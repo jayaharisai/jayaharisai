@@ -49,6 +49,7 @@
 
 /* Mobile & Tablet: Static scrolling only - NO ANIMATIONS */
 @media (max-width: 1024px) {
+    /* Force static scrolling */
     html {
         overflow-y: auto !important;
         overflow-x: hidden !important;
@@ -69,6 +70,7 @@
         position: relative !important;
     }
 
+    /* Remove ALL positioning and animations from sections */
     .section,
     .hero-section {
         position: relative !important;
@@ -87,6 +89,7 @@
         display: block !important;
     }
 
+    /* Remove ALL animation classes */
     .section.active,
     .section.prev,
     .hero-section.active,
@@ -99,22 +102,47 @@
         animation: none !important;
     }
 
+    /* Kill ALL transitions and animations on ALL elements */
     .section *,
-    .hero-section * {
+    .hero-section *,
+    .section *::before,
+    .section *::after,
+    .hero-section *::before,
+    .hero-section *::after {
         transition: none !important;
         animation: none !important;
+        transition-delay: 0s !important;
     }
 
+    /* Force all content visible immediately - NO FADE-INS */
     .section .container > *,
     .hero-section .hero-content > *,
+    .hero-section .hero-content > *:nth-child(1),
+    .hero-section .hero-content > *:nth-child(2),
+    .hero-section .hero-content > *:nth-child(3),
+    .hero-section .hero-content > *:nth-child(4),
+    .hero-section .hero-content > *:nth-child(5),
+    .hero-section.active .hero-content > *,
+    .hero-section.active .hero-content > *:nth-child(1),
+    .hero-section.active .hero-content > *:nth-child(2),
+    .hero-section.active .hero-content > *:nth-child(3),
+    .hero-section.active .hero-content > *:nth-child(4),
+    .hero-section.active .hero-content > *:nth-child(5),
     .hero-section .hero-image-wrapper,
+    .hero-section.active .hero-image-wrapper,
     .fade-in,
+    .fade-in.visible,
     .hero-content,
-    .hero-image {
+    .hero-image,
+    .timeline-item,
+    .project-card,
+    .skill-category,
+    .education-card {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
         animation: none !important;
         visibility: visible !important;
+        transition-delay: 0s !important;
     }
 }
