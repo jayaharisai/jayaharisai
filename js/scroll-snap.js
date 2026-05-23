@@ -13,6 +13,12 @@ class FullPageScroll {
     }
 
     init() {
+        // Disable on mobile and tablets - use static scrolling instead
+        if (window.innerWidth <= 1024) {
+            console.log('Mobile/Tablet detected - scroll-snap disabled');
+            return; // Exit - no full-page scroll on mobile
+        }
+
         // Get hero section first, then other sections in order
         const heroSection = document.querySelector('.hero-section');
         const otherSections = Array.from(document.querySelectorAll('.section'));
