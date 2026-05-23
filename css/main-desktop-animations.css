@@ -1,0 +1,84 @@
+/* Desktop-only: Restore animations for desktop, disable for mobile/tablet */
+
+/* Desktop: Keep slide animations */
+@media (min-width: 1025px) {
+    html {
+        overflow: hidden;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    main {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .section {
+        position: fixed;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(100%);
+        transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease, visibility 1s ease;
+    }
+
+    .section.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .section.prev {
+        transform: translateY(-100%);
+    }
+
+    .hero-section {
+        position: fixed;
+        opacity: 1;
+        transform: translateY(0);
+        transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease, visibility 1s ease;
+    }
+
+    .hero-section:not(.active) {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-100%);
+    }
+}
+
+/* Mobile & Tablet: Static scrolling only */
+@media (max-width: 1024px) {
+    html {
+        overflow-y: auto !important;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        overflow-y: auto !important;
+        height: auto !important;
+    }
+
+    main {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .section,
+    .hero-section {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+        height: auto !important;
+    }
+
+    .section .container > *,
+    .hero-section .hero-content > *,
+    .hero-section .hero-image-wrapper {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
