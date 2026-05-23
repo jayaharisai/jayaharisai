@@ -16,6 +16,14 @@ class FullPageScroll {
         // Disable on mobile and tablets - use static scrolling instead
         if (window.innerWidth <= 1024) {
             console.log('Mobile/Tablet detected - scroll-snap disabled');
+            // Remove all animation classes on mobile
+            document.querySelectorAll('.section, .hero-section').forEach(section => {
+                section.classList.remove('active', 'prev');
+                section.style.position = 'relative';
+                section.style.opacity = '1';
+                section.style.visibility = 'visible';
+                section.style.transform = 'none';
+            });
             return; // Exit - no full-page scroll on mobile
         }
 
