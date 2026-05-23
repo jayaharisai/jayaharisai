@@ -159,6 +159,34 @@ function initActiveSection() {
     // Full-page scroll now handles navigation updates
 
     if (sections && sections.length > 0) {
+        // Mobile/Tablet: Use Intersection Observer for scroll-based highlighting
+        if (window.innerWidth <= 1024) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
+
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            const href = link.getAttribute('href');
+                            if (href === `#${sectionId}` || href === `index.html#${sectionId}`) {
+                                link.classList.add('active');
+                                updateIndicator(link, false);
+                            }
+                        });
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            sections.forEach(section => observer.observe(section));
+        }
+
         // Only handle window resize for nav indicator repositioning
         window.addEventListener('resize', () => {
             const activeLink = document.querySelector('.nav-link.active');
