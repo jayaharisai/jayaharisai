@@ -1,0 +1,151 @@
+.cv {
+  width: var(--layout-width);
+  margin: 0px auto;
+  margin-bottom: 100px;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+/* MAIN LAYOUT */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+}
+
+/* LEFT SIDE */
+.left {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+}
+
+/* PROFILE BOX */
+.profileBox {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: var(--font-size-h2);
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.profileBox h2 {
+  font-size: var(--font-size-h3);
+  font-weight: 500;
+}
+
+.profileBox p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* SECTION */
+.section {
+  margin-top: 20px;
+}
+
+.section h4 {
+  font-size: var(--font-size-body-small);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.section p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-dark);
+  margin: 3px 0;
+}
+
+/* RIGHT SIDE */
+.right {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid var(--color-border);
+}
+
+/* BLOCK */
+.block {
+  margin-bottom: 25px;
+}
+
+.block h3 {
+  font-size: var(--font-size-body-large);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.block p {
+  font-size: var(--font-size-body-small);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+/* EXPERIENCE ITEM */
+.item {
+  margin-bottom: 15px;
+}
+
+.item h4 {
+  font-size: var(--font-size-body);
+  font-weight: 500;
+}
+
+.item span {
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-muted);
+}
+
+.item p {
+  font-size: var(--font-size-body-small);
+  color: var(--color-text-dark);
+}
+
+.avatarImg {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: auto;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* subtle improvement for readability */
+.block h3 {
+  font-size: var(--font-size-body-large);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.block p {
+  font-size: var(--font-size-body-small);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+}
+
+@media (max-width: 968px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cv {
+    margin-bottom: 60px;
+  }
+}

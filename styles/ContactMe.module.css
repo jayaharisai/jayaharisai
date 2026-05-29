@@ -1,0 +1,119 @@
+.contactme {
+  width: var(--layout-width);
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* LEFT */
+.contactmemessage {
+  flex: 1;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+}
+
+.description {
+  margin: 10px 0;
+  width: 300px;
+
+  font-size: var(--font-size-body-large);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.inputs {
+  margin-top: 60px;
+}
+
+.primeinput {
+  width: 400px;
+  margin: 20px 0;
+  border-bottom: 1px solid var(--color-text-muted);
+}
+
+.primeinput input {
+  width: 100%;
+  height: 40px;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-size: var(--font-size-body);
+}
+
+.primebtn {
+  width: 100px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+  color: white;
+
+  font-size: var(--font-size-body);
+  font-weight: 300;
+
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* RIGHT */
+.contactdirect {
+  flex: 1;
+}
+
+.heading3 {
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  margin: 30px 0;
+}
+
+.details {
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+/* LINKS (same style as your homepage) */
+.links {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: var(--font-size-body);
+  color: var(--color-primary);
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.links img {
+  width: 12px;
+  height: 12px;
+
+  filter: var(--color-primary-filter);
+}
+
+@media (max-width: 968px) {
+  .contactme {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .primeinput {
+    width: 100%;
+  }
+}
