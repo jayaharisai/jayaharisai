@@ -12,6 +12,7 @@ type SectionId = (typeof SECTIONS)[number];
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -109,11 +110,24 @@ export default function Navbar() {
     };
   }, [isHome]);
 
+  // Close mobile menu on scroll
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleScroll = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileMenuOpen]);
+
   /**
    * On the home page: smoothly scroll to the section and pin the highlight.
    * On any other page: navigate to home, then scroll to the section after load.
    */
   const scrollToSection = (id: SectionId) => {
+    setMobileMenuOpen(false);
     if (isHome) {
       const el = document.getElementById(id);
       if (el) {
@@ -133,6 +147,7 @@ export default function Navbar() {
    * Email/brand area: always go to the top of the home page.
    */
   const goHome = () => {
+    setMobileMenuOpen(false);
     if (isHome) {
       suppressObserver.current = true;
       setActiveSection("home");
@@ -145,8 +160,13 @@ export default function Navbar() {
     }
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
+
   return (
     <nav className={styles.navbar}>
+      {/* Desktop: left side - profile + email */}
       <div
         className={styles.mydetail}
         onClick={goHome}
@@ -164,6 +184,7 @@ export default function Navbar() {
         <div className={styles.username}>{PROFILE_DATA.email}</div>
       </div>
 
+      {/* Desktop: center menu */}
       <div className={styles.menu}>
         <div
           onClick={() => scrollToSection("work")}
@@ -187,13 +208,82 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Desktop: contact button */}
       <div className={styles.primebtn}>
-        <div onClick={() => scrollToSection("contact")}>
+        <div className={styles.primebtninner} onClick={() => scrollToSection("contact")}>
           Contact me
         </div>
 
         <div className={styles.usericon}>
           <img src={asset("/open.svg")} alt="link" />
+        </div>
+      </div>
+
+      {/* Mobile: hamburger area - profile + menu toggle */}
+      <div className={styles.mobileBar}>
+        <div
+          className={styles.mobileCenter}
+          onClick={goHome}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") goHome();
+          }}
+          style={{ cursor: "pointer" }}
+        >
+          <div className={styles.profileimg}>
+            <img src={asset("/myimage.jpg")} alt="Profile" />
+          </div>
+        </div>
+
+        <button
+          className={`${styles.hamburger} ${mobileMenuOpen ? styles.hamburgerOpen : ""}`}
+          onClick={toggleMobileMenu}
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+
+      {/* Mobile: dropdown overlay */}
+      <div
+        className={`${styles.mobileDropdown} ${mobileMenuOpen ? styles.mobileDropdownOpen : ""}`}
+        onClick={() => setMobileMenuOpen(false)}
+      >
+        <div
+          className={styles.mobileDropdownContent}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div
+            onClick={() => scrollToSection("work")}
+            className={`${styles.mobileMenuItem} ${activeSection === "work" ? styles.active : ""}`}
+          >
+            Works
+          </div>
+
+          <div
+            onClick={() => scrollToSection("about")}
+            className={`${styles.mobileMenuItem} ${activeSection === "about" ? styles.active : ""}`}
+          >
+            About me/CV
+          </div>
+
+          <div
+            onClick={() => scrollToSection("pages")}
+            className={`${styles.mobileMenuItem} ${activeSection === "pages" ? styles.active : ""}`}
+          >
+            Pages
+          </div>
+
+          <div className={styles.mobileContactBtn} onClick={() => scrollToSection("contact")}>
+            <span>Contact me</span>
+            <div className={styles.usericon}>
+              <img src={asset("/open.svg")} alt="link" />
+            </div>
+          </div>
         </div>
       </div>
     </nav>
