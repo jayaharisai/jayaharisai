@@ -2,6 +2,7 @@
 
 import styles from "@/styles/SectionHome.module.css";
 import { PROFILE_DATA } from "@/data/profile";
+import { asset } from "@/lib/basePath";
 
 export default function SectionHome() {
   const scrollToSection = (id: string) => {
@@ -21,7 +22,7 @@ export default function SectionHome() {
           <div>Hey</div>
 
           <div className={styles.shake}>
-            <img src="handshake.svg" alt="Handshake" />
+            <img src={asset("/handshake.svg")} alt="Handshake" />
           </div>
 
           <div>, I'm {PROFILE_DATA.name}</div>
@@ -42,21 +43,20 @@ export default function SectionHome() {
             rel="noopener noreferrer"
           >
             LinkedIn
-            <img src="open.svg" alt="Open link" />
+            <img src={asset("/open.svg")} alt="Open link" />
           </a>
 
           <div onClick={() => scrollToSection("about")}>
             Resume
-            <img src="open.svg" alt="Open link" />
+            <img src={asset("/open.svg")} alt="Open link" />
           </div>
 
           <div onClick={() => scrollToSection("contact")}>
             Contact Me
-            <img src="open.svg" alt="Open link" />
+            <img src={asset("/open.svg")} alt="Open link" />
           </div>
         </div>
       </div>
     </section>
   );
 }
-

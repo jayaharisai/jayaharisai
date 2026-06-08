@@ -1,5 +1,6 @@
 import styles from "@/styles/ContactMe.module.css";
 import { PROFILE_DATA } from "@/data/profile";
+import { asset } from "@/lib/basePath";
 
 export default function ContactMe() {
   return (
@@ -40,15 +41,15 @@ export default function ContactMe() {
 
         <div className={styles.links}>
           <a href={PROFILE_DATA.linkedinUrl} target="_blank" rel="noopener noreferrer">
-            LinkedIn <img src="open.svg" alt="open" />
+            LinkedIn <img src={asset("/open.svg")} alt="open" />
           </a>
 
           <a href={PROFILE_DATA.instagramUrl} target="_blank" rel="noopener noreferrer">
-            Instagram <img src="open.svg" alt="open" />
+            Instagram <img src={asset("/open.svg")} alt="open" />
           </a>
 
           <a href={PROFILE_DATA.githubUrl} target="_blank" rel="noopener noreferrer">
-            Github <img src="open.svg" alt="open" />
+            Github <img src={asset("/open.svg")} alt="open" />
           </a>
         </div>
       </div>

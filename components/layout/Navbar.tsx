@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import styles from "../../styles/Navbar.module.css";
 import { PROFILE_DATA } from "@/data/profile";
+import { asset } from "@/lib/basePath";
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("");
@@ -50,7 +51,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.mydetail}>
         <div className={styles.profileimg}>
-          <img src="myimage.jpg" alt="Profile" />
+          <img src={asset("/myimage.jpg")} alt="Profile" />
         </div>
 
         <div className={styles.username}>{PROFILE_DATA.email}</div>
@@ -78,7 +79,7 @@ export default function Navbar() {
         </div>
 
         <div className={styles.usericon}>
-          <img src="open.svg" alt="link" />
+          <img src={asset("/open.svg")} alt="link" />
         </div>
       </div>
     </nav>
