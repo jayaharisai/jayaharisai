@@ -46,15 +46,27 @@ export default function SectionHome() {
             <img src={asset("/open.svg")} alt="Open link" />
           </a>
 
-          <div onClick={() => scrollToSection("about")}>
+          <a
+            href="#about"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("about");
+            }}
+          >
             Resume
             <img src={asset("/open.svg")} alt="Open link" />
-          </div>
+          </a>
 
-          <div onClick={() => scrollToSection("contact")}>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("contact");
+            }}
+          >
             Contact Me
             <img src={asset("/open.svg")} alt="Open link" />
-          </div>
+          </a>
         </div>
       </div>
     </section>

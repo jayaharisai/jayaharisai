@@ -1,34 +1,37 @@
 /**
- * Returns the runtime base path for public assets.
+ * Centralised base path / asset helper.
  *
- * - In local development (`pnpm dev`), `basePath` is NOT applied by Next.js,
- *   so assets are served from `/` and we return "".
- * - In production builds (static export to GitHub Pages), `basePath` IS applied
- *   and assets must be prefixed with `/jayaharisai`.
+ * Current deployment: GitHub User Site at the root
+ *   → site is served at https://jayaharisai.github.io/
+ *   → no prefix is needed
  *
- * This helper ensures `<img src=...>`, `<a href=...>`, etc. work in BOTH
- * environments without you having to remember to toggle anything.
+ * If you ever move to a subpath (project site) or a custom domain with
+ * a base path, just change this one constant and all components will
+ * pick it up automatically.
  *
- * `process.env.NODE_ENV` is statically replaced at build time by Next.js,
- * so the dead branch is tree-shaken out of the production bundle.
+ * Example: to deploy under `/portfolio`, set it to "/portfolio".
  */
-export const BASE_PATH: string =
-  process.env.NODE_ENV === "production" ? "/jayaharisai" : "";
+export const BASE_PATH: string = "";
 
 /**
  * Prefix a public asset path with the current base path.
  *
  * @example
- *   asset("/myimage.jpg")        // dev: "/myimage.jpg"
- *   asset("/myimage.jpg")        // prod: "/jayaharisai/myimage.jpg"
+ *   asset("/myimage.jpg")  // returns "/myimage.jpg"
+ *   asset("https://...")   // returned untouched (external URL)
  */
 export const asset = (path: string): string => {
-  // If `path` already contains the basePath (e.g. coming from data), don't double-prefix
   if (!path) return path;
-  if (BASE_PATH && path.startsWith(BASE_PATH + "/")) return path;
-  if (path.startsWith("http://") || path.startsWith("https://") || path.startsWith("//")) {
-    return path; // absolute external URL, leave untouched
+  // External URLs are passed through unchanged
+  if (
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("//")
+  ) {
+    return path;
   }
+  // Guard against double-prefixing
+  if (BASE_PATH && path.startsWith(BASE_PATH + "/")) return path;
   // Ensure exactly one slash between BASE_PATH and path
   const trimmed = path.startsWith("/") ? path : `/${path}`;
   return `${BASE_PATH}${trimmed}`;

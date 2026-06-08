@@ -61,15 +61,20 @@
   font-size: var(--font-size-body);
 }
 
-.links a,
-.links div {
-  display: flex;
+/* Consistent styling for ALL home links (both <a> and the in-page anchors) */
+.links a {
+  display: inline-flex;
   align-items: center;
   gap: 6px;
 
   color: var(--color-primary);
-  text-decoration: underline;
+  text-decoration: none;          /* no underline by default */
   cursor: pointer;
+  transition: opacity var(--transition-normal) ease;
+}
+
+.links a:hover {
+  opacity: 0.7;                   /* subtle hover feedback */
 }
 
 .links img {
