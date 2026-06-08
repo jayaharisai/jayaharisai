@@ -1,69 +1,42 @@
-export type WorkItem = {
-  id: number;
-  title: string;
-  description: string;
-  blog: string[];
-  details: string[];
-  date: string;
-  author: string;
-  image: string;
-  github: string;
-};
+/**
+ * WORK DATA
+ * ----------
+ * This file holds the **real** project data that appears in the UI.
+ *
+ * For the data shape, all field documentation, and a copy-paste template,
+ * see `data/_samples.ts` (the SAMPLE_WORK constant).
+ *
+ * To add a new work:
+ *   1. Open `data/_samples.ts`
+ *   2. Copy the `SAMPLE_WORK` object
+ *   3. Paste it into the `WORK_DATA` array below
+ *   4. Fill in the fields with your real content
+ *
+ * The build system will automatically:
+ *   - Show each item as a card on the home page (Works section)
+ *   - Show each item on the /works list page
+ *   - Pre-render a static detail page at /works/[id]
+ */
+
+import type { WorkItem } from "./_samples";
+
+// Re-export the type so existing imports from this file keep working
+export type { WorkItem } from "./_samples";
 
 export const WORK_DATA: WorkItem[] = [
-  {
-    id: 1,
-    title: "Modern Landing Page Design",
-    description: "High conversion SaaS landing page UI system...",
-    blog: ["Conversion UX", "Typography", "Flow"],
-    details: ["UI System", "UX Flow", "Conversion Design"],
-    date: "21 Jan 2026",
-    author: "Sai",
-    image: "https://images.pexels.com/photos/35362087/pexels-photo-35362087.jpeg",
-    github: "#",
-  },
-  {
-    id: 2,
-    title: "E-commerce UI Concept",
-    description: "Modern e-commerce interface...",
-    blog: ["Fast browsing", "Navigation", "Checkout flow"],
-    details: ["E-commerce UI", "UX Design"],
-    date: "10 Feb 2026",
-    author: "Sai",
-    image: "https://images.pexels.com/photos/2371936/pexels-photo-2371936.jpeg",
-    github: "#",
-  },
-  {
-    id: 3,
-    title: "Mobile Banking App UI",
-    description: "Secure banking interface...",
-    blog: ["Security UX", "Speed", "Trust"],
-    details: ["Banking UI", "Security UX"],
-    date: "02 Mar 2026",
-    author: "Sai",
-    image: "https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg",
-    github: "#",
-  },
-  {
-    id: 4,
-    title: "AI Analytics Dashboard",
-    description: "AI dashboard for real-time analytics...",
-    blog: ["KPI", "Data Viz", "Insights"],
-    details: ["AI Dashboard", "Analytics"],
-    date: "15 Mar 2026",
-    author: "Sai",
-    image: "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg",
-    github: "#",
-  },
-  {
-    id: 5,
-    title: "AI Dashboard Pro",
-    description: "Advanced analytics system...",
-    blog: ["Realtime data", "Visualization", "Speed"],
-    details: ["AI", "Dashboard"],
-    date: "18 Mar 2026",
-    author: "Sai",
-    image: "https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg",
-    github: "#",
-  },
+  // 👇 Add your real works here.
+  // Each item must follow the WorkItem shape (see data/_samples.ts).
+  //
+  // Example:
+  //   {
+  //     id: 1,
+  //     title: "My ML Platform",
+  //     description: "...",
+  //     blog: ["Python", "ML"],
+  //     details: ["Built X", "Solved Y"],
+  //     date: "Mar 2026",
+  //     author: "Jayaharisai",
+  //     image: "https://images.pexels.com/photos/123/pexels-photo-123.jpeg?auto=compress&cs=tinysrgb&w=600&dpr=1",
+  //     github: "https://github.com/you/repo",
+  //   },
 ];

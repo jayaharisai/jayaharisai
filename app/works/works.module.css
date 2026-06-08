@@ -1,38 +1,22 @@
-/* ===================== */
-/* SECTION WRAPPER */
-/* ===================== */
 .page {
   width: var(--layout-width);
-  margin: auto;
-  margin-bottom: 150px;
-}
-
-/* ===================== */
-/* HEADER ROW (title + see all) */
-/* ===================== */
-.headerRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 0 80px 0;
 }
 
 .title {
   font-size: var(--font-size-h1);
-  font-weight: 400;
-  margin: 0;
+  font-weight: 300;
+  margin: 0 0 8px 0;
+  color: #1a1a1a;
 }
 
-.seeAll {
-  font-size: var(--font-size-body);
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 400;
-  transition: opacity var(--transition-normal) ease;
-}
-
-.seeAll:hover {
-  opacity: 0.6;
+.subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0 0 32px 0;
+  line-height: 1.6;
 }
 
 .emptyText {
@@ -43,17 +27,12 @@
   line-height: 1.6;
 }
 
-/* ===================== */
-/* LIST OF CARDS */
-/* ===================== */
 .list {
   display: flex;
   flex-direction: column;
 }
 
-/* ===================== */
-/* CARD (flat, no border, no animation) */
-/* ===================== */
+/* Card — flat, no border, no animation */
 .card {
   display: flex;
   gap: 24px;
@@ -63,16 +42,15 @@
   padding: 20px 0;
   text-decoration: none;
   color: inherit;
-  /* subtle background on hover, no movement */
   transition: background var(--transition-normal) ease;
 }
 
 .card + .card {
-  border-top: 1px solid var(--color-border); /* thin separator between cards */
+  border-top: 1px solid var(--color-border);
 }
 
 .card:hover {
-  background: rgba(0, 0, 0, 0.025); /* slightly darker */
+  background: rgba(0, 0, 0, 0.025);
 }
 
 .imageWrap {
@@ -143,10 +121,12 @@
   border-radius: 9999px;
 }
 
-/* Mobile */
 @media (max-width: 700px) {
   .page {
-    margin-bottom: 80px;
+    padding: 100px 0 60px 0;
+  }
+  .title {
+    font-size: 28px;
   }
   .card {
     flex-direction: column;

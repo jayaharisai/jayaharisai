@@ -16,16 +16,32 @@
   --font-size-body-small: 13px;
   --font-size-xs: 12px;
   --font-size-xxs: 11px;
+
+  /* Navbar height (fixed at top) — used for scroll offset */
+  --navbar-height: 80px;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; /* Offset for the fixed navbar */
+  scroll-padding-top: var(--navbar-height);
 }
 
 body {
   margin: 0px;
   padding: 0px;
+}
+
+/* ============================================
+   SCROLL OFFSET FOR IN-PAGE ANCHORS
+   When a section is scrolled into view via
+   #work, #pages, etc., the fixed navbar (80px
+   tall) would otherwise cover the heading.
+   `scroll-margin-top` ensures the heading sits
+   just below the navbar.
+   ============================================ */
+section[id],
+div[id] {
+  scroll-margin-top: var(--navbar-height);
 }
 
 /* Hide scrollbars globally while keeping scroll functionality intact */
