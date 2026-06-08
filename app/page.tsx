@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import VersionBadge from "@/components/common/VersionBadge";
 import ContactMe from "@/sections/ContactMe";
 import CV from "@/sections/CV";
 import Footer from "@/sections/Footer";
@@ -23,6 +24,7 @@ export default function Home() {
         <ContactMe/>
       </ScrollReveal>
       <Footer/>
+      <VersionBadge/>
     </div>
   );
 }
