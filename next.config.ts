@@ -7,7 +7,14 @@ const nextConfig: NextConfig = {
   // In local dev (`pnpm dev`), the site is served from `/`, so no prefix is needed
   // and assets like `/myimage.jpg` resolve correctly.
   ...(isProd ? { basePath: "/jayaharisai" } : {}),
+
+  // `output: "export"` produces a fully static site.
   output: "export",
+
+  // Trailing slash is required for static hosting on GitHub Pages
+  // so that dynamic routes like /blog/[slug] resolve to /blog/[slug]/index.html.
+  trailingSlash: true,
+
   images: {
     unoptimized: true,
   },

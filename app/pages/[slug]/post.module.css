@@ -1,0 +1,225 @@
+/* ============================================
+   READING PAGE — calm, paper-like, low-strain
+   ============================================ */
+
+.article {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 90px 28px 100px 28px;
+  box-sizing: border-box;
+}
+
+/* ---------- HEADER ---------- */
+
+.header {
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+/* Title: BIG but THIN */
+.title {
+  font-size: 34px;
+  font-weight: 300;          /* thin */
+  line-height: 1.25;
+  color: #1a1a1a;            /* not pure black — softer */
+  margin: 0 0 10px 0;
+  letter-spacing: -0.2px;    /* subtle tightening */
+}
+
+/* Subheading (excerpt): tiny, gray, italic */
+.excerpt {
+  font-size: 12px;
+  color: gray;                /* uses your --color-text-muted feel */
+  line-height: 1.5;
+  margin: 0 0 14px 0;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Meta line: author · date · read time */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: gray;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+.author {
+  font-weight: 500;
+  color: #444;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+/* ---------- COVER IMAGE: slim, no rounding ---------- */
+
+.cover {
+  display: block;
+  width: 100%;
+  height: 140px;             /* slim, as requested */
+  object-fit: cover;
+  border-radius: 0;          /* no rounded corners */
+  margin: 24px 0 32px 0;
+  background: #f5f5f5;
+}
+
+/* ---------- BODY CONTENT: small, light, airy ---------- */
+
+.content {
+  font-size: 14px;           /* small, easy on the eyes */
+  line-height: 1.85;          /* generous breathing room */
+  color: #444;                /* your --color-text-dark */
+  font-weight: 400;
+}
+
+.content p {
+  margin: 0 0 18px 0;
+}
+
+.content h2 {
+  font-size: 15px;            /* 15px as requested */
+  font-weight: 500;
+  color: var(--color-primary); /* your brand purple */
+  margin: 32px 0 10px 0;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  text-transform: none;
+}
+
+.content h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 24px 0 8px 0;
+  line-height: 1.4;
+}
+
+.content strong {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.content em {
+  font-style: italic;
+}
+
+.content ul,
+.content ol {
+  margin: 0 0 18px 0;
+  padding-left: 24px;
+}
+
+.content li {
+  margin: 6px 0;
+  line-height: 1.85;
+}
+
+.content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.content code {
+  background: rgba(115, 79, 150, 0.06);
+  color: #444;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: "SF Mono", "Monaco", "Consolas", monospace;
+  font-size: 0.9em;
+}
+
+.content pre {
+  background: #f7f7f7;
+  color: #333;
+  padding: 14px 18px;
+  border-radius: 0;
+  border: 1px solid #eee;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0 0 20px 0;
+}
+
+.content pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.content blockquote {
+  border-left: 2px solid var(--color-primary);
+  margin: 20px 0;
+  padding: 2px 0 2px 16px;
+  font-style: italic;
+  color: gray;
+  font-size: 13px;
+}
+
+/* ---------- TAGS (after content) ---------- */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 36px 0 20px 0;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 400;
+  border: 1px solid rgba(115, 79, 150, 0.25);
+  border-radius: 9999px;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.backLink {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  transition: opacity var(--transition-normal) ease;
+}
+
+.backLink:hover {
+  opacity: 0.6;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+  .article {
+    padding: 70px 18px 60px 18px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .cover {
+    height: 110px;
+  }
+  .content {
+    font-size: 13.5px;
+  }
+}
