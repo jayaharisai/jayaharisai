@@ -1,5 +1,6 @@
 import styles from "@/styles/CV.module.css";
 import { PROFILE_DATA } from "@/data/profile";
+import { asset } from "@/lib/basePath";
 
 export default function CV() {
   return (
@@ -10,7 +11,7 @@ export default function CV() {
         {/* LEFT */}
         <div className={styles.left}>
           <div className={styles.profileBox}>
-            <img src="myimage.jpg" className={styles.avatarImg} />
+            <img src={asset("/myimage.jpg")} className={styles.avatarImg} alt={PROFILE_DATA.fullName} />
             <h2>{PROFILE_DATA.fullName}</h2>
             <p>{PROFILE_DATA.cv.subtitle}</p>
           </div>
