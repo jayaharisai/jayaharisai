@@ -42,6 +42,28 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
+      # ---------------------------------------------------------------
+      # Generate public/version.json from package.json + CI metadata.
+      # The version badge on the site reads this file at runtime, so
+      # every push automatically gets a fresh build number and commit.
+      # ---------------------------------------------------------------
+      - name: Generate version.json
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          BUILD=${{ github.run_number }}
+          SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          cat > public/version.json <<EOF
+          {
+            "version": "${VERSION}",
+            "build": ${BUILD},
+            "sha": "${SHA}",
+            "deployedAt": "${TIMESTAMP}"
+          }
+          EOF
+          echo "Generated public/version.json:"
+          cat public/version.json
+
       - name: Static HTML export
         run: pnpm build
 
