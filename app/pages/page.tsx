@@ -1,16 +1,29 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import VersionBadge from "@/components/common/VersionBadge";
 import Link from "next/link";
-import { PAGES } from "@/data/pages";
+import { fetchPages, type PagePostData } from "@/lib/supabase";
 import styles from "./pages.module.css";
 
-export const metadata: Metadata = {
-  title: "Pages | Jayaharisai",
-  description: "Pages on MLOps, LLMOps, backend systems, and engineering.",
-};
-
 export default function PagesIndex() {
+  const [pages, setPages] = useState<PagePostData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await fetchPages();
+        setPages(data);
+      } catch {
+        setPages([]);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -20,16 +33,26 @@ export default function PagesIndex() {
           Notes on MLOps, LLMOps, backend systems, and the craft of shipping software.
         </p>
 
+        {loading && <p style={{ textAlign: "center", color: "#888" }}>Loading...</p>}
+
+        {!loading && pages.length === 0 && (
+          <p style={{ textAlign: "center", color: "#888", marginTop: "2rem" }}>
+            No published pages yet. Use the editor to create one.
+          </p>
+        )}
+
         <div className={styles.list}>
-          {PAGES.map((post) => (
+          {pages.map((post) => (
             <Link
               key={post.slug}
               href={`/pages/${post.slug}`}
               className={styles.card}
             >
-              <div className={styles.imageWrap}>
-                <img src={post.cover} alt={post.title} className={styles.image} loading="lazy" decoding="async" />
-              </div>
+                {extractCover(post.content) && (
+                <div className={styles.imageWrap}>
+                  <img src={extractCover(post.content)!} alt={post.title} className={styles.image} loading="lazy" decoding="async" />
+                </div>
+              )}
               <div className={styles.body}>
                 <h2 className={styles.cardTitle}>{post.title}</h2>
                 <p className={styles.cardExcerpt}>{post.excerpt}</p>
@@ -42,7 +65,7 @@ export default function PagesIndex() {
                     })}
                   </span>
                   <span className={styles.dot}>·</span>
-                  <span>{post.readTime}</span>
+                  <span>{post.read_time}</span>
                 </div>
                 <div className={styles.tags}>
                   {post.tags.map((tag) => (
@@ -59,4 +82,10 @@ export default function PagesIndex() {
       <VersionBadge />
     </div>
   );
+}
+
+/** Extract first image src from HTML content, or return null */
+function extractCover(html: string): string | null {
+  const match = html.match(/<img[^>]+src=["']([^"']+)["']/);
+  return match ? match[1] : null;
 }

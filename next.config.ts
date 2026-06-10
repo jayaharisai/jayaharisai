@@ -4,15 +4,13 @@ const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   // Only apply basePath for production builds (GitHub Pages deployment).
-  // In local dev (`pnpm dev`), the site is served from `/`, so no prefix is needed
-  // and assets like `/myimage.jpg` resolve correctly.
   ...(isProd ? { basePath: "/jayaharisai" } : {}),
 
-  // `output: "export"` produces a fully static site.
-  output: "export",
+  // Static export only for production builds.
+  // In dev mode, API routes work for the editor.
+  ...(isProd ? { output: "export" as const } : {}),
 
   // Trailing slash is required for static hosting on GitHub Pages
-  // so that dynamic routes like /blog/[slug] resolve to /blog/[slug]/index.html.
   trailingSlash: true,
 
   images: {

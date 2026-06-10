@@ -25,14 +25,14 @@
 
 .seeAll {
   font-size: var(--font-size-body);
-  color: var(--color-primary);
+  color: #888;
   text-decoration: none;
   font-weight: 400;
-  transition: opacity var(--transition-normal) ease;
+  transition: color 0.2s ease;
 }
 
 .seeAll:hover {
-  opacity: 0.6;
+  color: #555;
 }
 
 .emptyText {
