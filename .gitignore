@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local published pages data (generated at runtime)
+data/published-pages.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
