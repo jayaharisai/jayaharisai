@@ -87,93 +87,127 @@
 .publishBtn:hover { background: #222; }
 .publishBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ── KEY GATE PAGE ── */
-.keyGatePage {
-  min-height: 100vh;
+/* ── KEY GATE POPUP (same style as delete modal) ── */
+.keyOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #faf8fc;
 }
 
-.keyGateBox {
-  text-align: center;
-  padding: 60px 40px;
-  max-width: 400px;
+.keyModal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 380px;
+  max-width: 90vw;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.lockIcon { font-size: 56px; margin-bottom: 16px; }
-
-.gateTitle {
-  font-size: 28px;
-  font-weight: 600;
-  color: #2a1a3a;
-  margin: 0 0 8px;
-}
-
-.gateDesc {
-  font-size: 14px;
+.keyCloseBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #888;
-  margin: 0 0 28px;
+  transition: background 0.2s ease;
+}
+
+.keyCloseBtn:hover {
+  background: #f0f0f0;
+}
+
+.keyLockIcon {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.keyTitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 6px;
+  color: #1a1a1a;
+}
+
+.keyDesc {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin: 0 0 20px;
+  line-height: 1.5;
 }
 
 .keyInputRow {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .keyInput {
   flex: 1;
-  height: 44px;
-  padding: 0 16px;
-  border: 2px solid #e8e0f0;
-  border-radius: 8px;
-  font-size: 14px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid #888;
+  font-size: 13px;
   outline: none;
   font-family: inherit;
-  background: #fff;
+  background: transparent;
 }
 
 .keyInput:focus {
-  border-color: #734f96;
-  box-shadow: 0 0 0 3px rgba(115, 79, 150, 0.1);
+  border-bottom-color: #734f96;
+}
+
+.keyInput::placeholder {
+  color: #bbb;
 }
 
 .keySubmit {
-  height: 44px;
-  padding: 0 24px;
+  padding: 0 20px;
+  height: 40px;
   background: #000;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 300;
   cursor: pointer;
+  transition: background 0.2s ease;
   font-family: inherit;
   white-space: nowrap;
 }
 
-.keySubmit:hover { background: #222; }
-
-.error {
-  color: #d32f2f;
-  font-size: 13px;
-  margin: 14px 0 0;
+.keySubmit:hover {
+  background: #222;
 }
 
-.backHomeBtn {
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: inherit;
-  margin-top: 20px;
-  transition: color 0.15s;
+.keyError {
+  text-align: center;
+  font-size: 12px;
+  color: #e74c3c;
+  margin: 12px 0 0;
 }
-
-.backHomeBtn:hover { color: #333; }
 
 /* Editor wrapper */
 .editorWrapper {

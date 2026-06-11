@@ -72,7 +72,7 @@ export default function Pages() {
             </button>
           </div>
         </div>
-        <p className={styles.emptyText}>No pages yet — coming soon. Click "+ Add Page" to create one.</p>
+        <p className={styles.emptyText}>No pages yet — coming soon. Click &ldquo;+ Add Page&rdquo; to create one.</p>
       </div>
     );
   }

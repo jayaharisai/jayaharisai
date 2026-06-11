@@ -114,67 +114,68 @@ export default function AddPageModal({ isOpen, onClose, onSave }: AddPageModalPr
     }
   };
 
-  const modal = (
+  const modal = !identity ? (
+    <div className={styles.keyOverlay}>
+      <div className={styles.keyModal}>
+        <button className={styles.keyCloseBtn} onClick={onClose}>✕</button>
+        <div className={styles.keyLockIcon}>🔑</div>
+        <h2 className={styles.keyTitle}>Enter Editor Key</h2>
+        <p className={styles.keyDesc}>
+          Use your key to unlock the editor. You can use your name or email.
+        </p>
+        <div className={styles.keyInputRow}>
+          <input
+            type="password"
+            className={styles.keyInput}
+            placeholder="Enter your key..."
+            value={key}
+            onChange={(e) => { setKey(e.target.value); setKeyError(""); }}
+            onKeyDown={(e) => { if (e.key === "Enter") handleKeySubmit(); }}
+            autoFocus
+          />
+          <button className={styles.keySubmit} onClick={handleKeySubmit}>Unlock →</button>
+        </div>
+        {keyError && <p className={styles.keyError}>{keyError}</p>}
+      </div>
+    </div>
+  ) : (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.modal}>
         <button className={styles.closeBtn} onClick={handleClose}>✕</button>
 
-        {!identity ? (
-          <div className={styles.keyGate}>
-            <div className={styles.lockIcon}>🔑</div>
-            <h2 className={styles.gateTitle}>Enter Editor Key</h2>
-            <p className={styles.gateDesc}>
-              Use your key to unlock the editor. You can use your name or email.
-            </p>
-            <div className={styles.keyInputRow}>
-              <input
-                type="password"
-                className={styles.keyInput}
-                placeholder="Enter your key..."
-                value={key}
-                onChange={(e) => { setKey(e.target.value); setKeyError(""); }}
-                onKeyDown={(e) => { if (e.key === "Enter") handleKeySubmit(); }}
-                autoFocus
-              />
-              <button className={styles.keySubmit} onClick={handleKeySubmit}>Unlock →</button>
-            </div>
-            {keyError && <p className={styles.error}>{keyError}</p>}
+        <div className={styles.editorSection}>
+          <div className={styles.editorHeader}>
+            <h2 className={styles.editorHeading}>Create New Page</h2>
+            <span className={styles.editorBadge}>✍ {identity.name}</span>
           </div>
-        ) : (
-          <div className={styles.editorSection}>
-            <div className={styles.editorHeader}>
-              <h2 className={styles.editorHeading}>Create New Page</h2>
-              <span className={styles.editorBadge}>✍ {identity.name}</span>
-            </div>
 
-            <div className={styles.metaFields}>
-              <input type="text" className={styles.metaInput} placeholder="Post title *" value={title} onChange={(e) => setTitle(e.target.value)} />
-              <input type="text" className={styles.metaInput} placeholder="Short excerpt / summary" value={excerpt} onChange={(e) => setExcerpt(e.target.value)} />
-              <div className={styles.metaRow}>
-                <input type="text" className={styles.metaInput} placeholder="Tags (comma separated, e.g. React, Web)" value={tags} onChange={(e) => setTags(e.target.value)} />
-                <input type="text" className={styles.metaInput} placeholder="Cover image URL (optional)" value={cover} onChange={(e) => setCover(e.target.value)} />
-              </div>
-            </div>
-
-            <RichEditor content={content} onChange={setContent} placeholder="Start writing your blog post..." />
-
-            {saveError && <p className={styles.error}>{saveError}</p>}
-
-            <div className={styles.actions}>
-              <button className={styles.cancelBtn} onClick={() => {
-                if (window.confirm("Discard your changes?")) {
-                  resetForm();
-                  onClose();
-                }
-              }}>
-                Cancel
-              </button>
-              <button className={styles.saveBtn} onClick={handleSave} disabled={saving}>
-                {saving ? "Saving..." : "Publish Page →"}
-              </button>
+          <div className={styles.metaFields}>
+            <input type="text" className={styles.metaInput} placeholder="Post title *" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" className={styles.metaInput} placeholder="Short excerpt / summary" value={excerpt} onChange={(e) => setExcerpt(e.target.value)} />
+            <div className={styles.metaRow}>
+              <input type="text" className={styles.metaInput} placeholder="Tags (comma separated, e.g. React, Web)" value={tags} onChange={(e) => setTags(e.target.value)} />
+              <input type="text" className={styles.metaInput} placeholder="Cover image URL (optional)" value={cover} onChange={(e) => setCover(e.target.value)} />
             </div>
           </div>
-        )}
+
+          <RichEditor content={content} onChange={setContent} placeholder="Start writing your blog post..." />
+
+          {saveError && <p className={styles.error}>{saveError}</p>}
+
+          <div className={styles.actions}>
+            <button className={styles.cancelBtn} onClick={() => {
+              if (window.confirm("Discard your changes?")) {
+                resetForm();
+                onClose();
+              }
+            }}>
+              Cancel
+            </button>
+            <button className={styles.saveBtn} onClick={handleSave} disabled={saving}>
+              {saving ? "Saving..." : "Publish Page →"}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

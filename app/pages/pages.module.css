@@ -1,3 +1,4 @@
+
 .page {
   width: var(--layout-width);
   max-width: 900px;
@@ -111,6 +112,218 @@
   font-weight: 400;
   border: 1px solid rgba(115, 79, 150, 0.25);
   border-radius: 9999px;
+}
+
+/* ── DELETE BUTTON (on All Pages cards) ─────────────── */
+.deleteBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: #ccc;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+  line-height: 1.6;
+}
+
+.card {
+  position: relative;
+}
+
+.card:hover .deleteBtn {
+  opacity: 1;
+}
+
+.deleteBtn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ── DELETE KEY VERIFICATION MODAL ──────────────────── */
+.keyOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyModal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  width: 380px;
+  max-width: 90vw;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.keyCloseBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  transition: background 0.2s ease;
+}
+
+.keyCloseBtn:hover {
+  background: #f0f0f0;
+}
+
+.keyLockIcon {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.keyTitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 6px;
+  color: #1a1a1a;
+}
+
+.keyDesc {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.keyInputRow {
+  display: flex;
+  gap: 8px;
+}
+
+.keyInput {
+  flex: 1;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid #888;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  background: transparent;
+  transition: border-color 0.2s ease;
+}
+
+.keyInput:focus {
+  border-bottom-color: var(--color-primary);
+}
+
+.keySubmit {
+  padding: 0 20px;
+  height: 40px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 300;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.keySubmit:hover {
+  opacity: 0.85;
+}
+
+.keySubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.keyError {
+  text-align: center;
+  font-size: 12px;
+  color: #e74c3c;
+  margin: 12px 0 0;
+}
+
+/* ── SKELETON LOADING ────────────────────────────────── */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonCard {
+  display: flex;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skeletonImage {
+  flex-shrink: 0;
+  width: 200px;
+  height: 130px;
+  border-radius: 0;
+}
+
+.skeletonBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.skeletonTitle {
+  height: 22px;
+  width: 65%;
+}
+
+.skeletonExcerpt {
+  height: 14px;
+  width: 90%;
+}
+
+.skeletonExcerptShort {
+  height: 14px;
+  width: 45%;
+}
+
+.skeletonMeta {
+  height: 12px;
+  width: 30%;
+  margin-top: 4px;
 }
 
 @media (max-width: 700px) {

@@ -118,5 +118,11 @@ CREATE POLICY "Allow public read access on works"
 CREATE POLICY "Allow public read access on pages"
   ON pages FOR SELECT USING (true);
 
+CREATE POLICY "Allow public insert access on pages"
+  ON pages FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Allow public delete access on pages"
+  ON pages FOR DELETE USING (true);
+
 CREATE POLICY "Allow public read access on profile"
   ON profile FOR SELECT USING (true);

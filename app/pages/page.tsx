@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import VersionBadge from "@/components/common/VersionBadge";
 import Link from "next/link";
-import { fetchPages, type PagePostData } from "@/lib/supabase";
+import { fetchPages, deletePage, type PagePostData } from "@/lib/supabase";
+import { getIdentityByKey } from "@/data/editor-keys";
 import styles from "./pages.module.css";
 
 const PLACEHOLDER_IMG = "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=400&dpr=1";
@@ -12,6 +13,10 @@ const PLACEHOLDER_IMG = "https://images.pexels.com/photos/577585/pexels-photo-57
 export default function PagesIndex() {
   const [pages, setPages] = useState<PagePostData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deleteConfirming, setDeleteConfirming] = useState<string | null>(null);
+  const [deleteKey, setDeleteKey] = useState("");
+  const [deleteError, setDeleteError] = useState("");
+  const [deletingSlug, setDeletingSlug] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -25,6 +30,44 @@ export default function PagesIndex() {
       }
     })();
   }, []);
+
+  const handleDeleteClick = (slug: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDeleteConfirming(slug);
+    setDeleteKey("");
+    setDeleteError("");
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!deleteConfirming || !deleteKey.trim()) return;
+
+    const identity = getIdentityByKey(deleteKey);
+    if (!identity) {
+      setDeleteError("Invalid key. Please try again.");
+      return;
+    }
+
+    setDeletingSlug(deleteConfirming);
+    setDeleteError("");
+
+    const result = await deletePage(deleteConfirming);
+    setDeletingSlug(null);
+    setDeleteConfirming(null);
+    setDeleteKey("");
+
+    if (result.success) {
+      setPages((prev) => prev.filter((p) => p.slug !== deleteConfirming));
+    } else {
+      alert("Failed to delete: " + (result.error || "Unknown error"));
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setDeleteConfirming(null);
+    setDeleteKey("");
+    setDeleteError("");
+  };
 
   return (
     <div>
@@ -66,6 +109,14 @@ export default function PagesIndex() {
                 href={`/pages/${post.slug}`}
                 className={styles.card}
               >
+                {/* Delete button — visible only on hover, positioned top-right of card */}
+                <button
+                  className={styles.deleteBtn}
+                  onClick={(e) => handleDeleteClick(post.slug, e)}
+                  title="Delete this page"
+                >
+                  delete
+                </button>
                 <div className={styles.imageWrap}>
                   <img src={extractCover(post.content) || PLACEHOLDER_IMG} alt={post.title} className={styles.image} loading="lazy" decoding="async" />
                 </div>
@@ -97,6 +148,37 @@ export default function PagesIndex() {
         )}
       </div>
       <VersionBadge />
+
+      {/* Delete key verification modal */}
+      {deleteConfirming && (
+        <div className={styles.keyOverlay}>
+          <div className={styles.keyModal}>
+            <button className={styles.keyCloseBtn} onClick={handleDeleteCancel}>✕</button>
+            <div className={styles.keyLockIcon}>🔑</div>
+            <h2 className={styles.keyTitle}>Enter Editor Key</h2>
+            <p className={styles.keyDesc}>Enter your editor key to confirm deletion of this page.</p>
+            <div className={styles.keyInputRow}>
+              <input
+                type="password"
+                className={styles.keyInput}
+                placeholder="Enter your key..."
+                value={deleteKey}
+                onChange={(e) => { setDeleteKey(e.target.value); setDeleteError(""); }}
+                onKeyDown={(e) => { if (e.key === "Enter") handleDeleteConfirm(); }}
+                autoFocus
+              />
+              <button
+                className={styles.keySubmit}
+                onClick={handleDeleteConfirm}
+                disabled={deletingSlug !== null}
+              >
+                {deletingSlug ? "Deleting..." : "Delete →"}
+              </button>
+            </div>
+            {deleteError && <p className={styles.keyError}>{deleteError}</p>}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

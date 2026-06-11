@@ -96,3 +96,24 @@ export async function savePage(page: {
     return { success: false, error: err.message || "Failed to save." };
   }
 }
+
+/**
+ * Delete a page by slug.
+ * Requires a valid editor key for authorization.
+ */
+export async function deletePage(slug: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const { error } = await supabase
+      .from("pages")
+      .delete()
+      .eq("slug", slug);
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Failed to delete." };
+  }
+}

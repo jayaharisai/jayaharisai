@@ -160,23 +160,28 @@ export default function FullPageEditor() {
 
   if (!identity) {
     return (
-      <div className={styles.keyGatePage}>
-        <div className={styles.keyGateBox}>
-          <div className={styles.lockIcon}>🔑</div>
-          <h2 className={styles.gateTitle}>Editor Access</h2>
-          <p className={styles.gateDesc}>Enter your editor key to continue.</p>
-          <div className={styles.keyInputRow}>
-            <input
-              type="password" className={styles.keyInput} placeholder="your key or email..."
-              value={key} onChange={(e) => { setKey(e.target.value); setKeyError(""); }}
-              onKeyDown={(e) => { if (e.key === "Enter") handleKeySubmit(); }} autoFocus
-            />
-            <button className={styles.keySubmit} onClick={handleKeySubmit}>Unlock</button>
-          </div>
-          {keyError && <p className={styles.error}>{keyError}</p>}
-          <button className={styles.backHomeBtn} onClick={() => router.push("/")}>← Back home</button>
+      <>
+        <div className={styles.page}>
+          {saved && <div className={styles.savedBanner}>✓ Published! Redirecting...</div>}
         </div>
-      </div>
+        <div className={styles.keyOverlay}>
+          <div className={styles.keyModal}>
+            <button className={styles.keyCloseBtn} onClick={() => router.push("/")}>✕</button>
+            <div className={styles.keyLockIcon}>🔑</div>
+            <h2 className={styles.keyTitle}>Enter Editor Key</h2>
+            <p className={styles.keyDesc}>Enter your editor key to continue.</p>
+            <div className={styles.keyInputRow}>
+              <input
+                type="password" className={styles.keyInput} placeholder="your key or email..."
+                value={key} onChange={(e) => { setKey(e.target.value); setKeyError(""); }}
+                onKeyDown={(e) => { if (e.key === "Enter") handleKeySubmit(); }} autoFocus
+              />
+              <button className={styles.keySubmit} onClick={handleKeySubmit}>Unlock</button>
+            </div>
+            {keyError && <p className={styles.keyError}>{keyError}</p>}
+          </div>
+        </div>
+      </>
     );
   }
 
