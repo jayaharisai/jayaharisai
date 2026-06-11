@@ -5,16 +5,19 @@ import { useEffect, useRef, useState, ReactNode } from "react";
 interface ScrollRevealProps {
   children: ReactNode;
   threshold?: number;
+  startVisible?: boolean;
 }
 
-export default function ScrollReveal({ children, threshold = 0.05 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function ScrollReveal({ children, threshold = 0.05, startVisible = false }: ScrollRevealProps) {
+  const [isVisible, setIsVisible] = useState(startVisible);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       {
         threshold,

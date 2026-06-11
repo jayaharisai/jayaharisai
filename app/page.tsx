@@ -17,7 +17,8 @@ export default function Home() {
         <HashScroller />
       </Suspense>
       <Navbar/>
-      <ScrollReveal>
+      {/* SectionHome is always in viewport on load — don't animate it to avoid layout shift */}
+      <ScrollReveal startVisible>
         <SectionHome/>
       </ScrollReveal>
       <ScrollReveal>
