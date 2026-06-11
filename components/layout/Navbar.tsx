@@ -6,7 +6,7 @@ import styles from "../../styles/Navbar.module.css";
 import { PROFILE_DATA } from "@/data/profile";
 import { asset, BASE_PATH } from "@/lib/basePath";
 
-const HOME_PATH = `${BASE_PATH}/`; // "/" locally, "/jayaharisai/" in production
+const HOME_PATH = "/"; // Next.js router auto-prepends basePath from next.config.ts
 const SECTIONS = ["home", "work", "about", "pages", "contact"] as const;
 type SectionId = (typeof SECTIONS)[number];
 
@@ -20,10 +20,12 @@ export default function Navbar() {
   // doesn't flicker during smooth-scroll (user-initiated OR browser-restored).
   const suppressObserver = useRef(false);
 
-  // True only when we're on the home page (handles both "/" and "/jayaharisai/")
+  // True only when we're on the home page
+  // In production basePath is /jayaharisai, so pathname is "/jayaharisai/"
+  // In dev, pathname is "/"
   const isHome =
     pathname === HOME_PATH ||
-    pathname === `${BASE_PATH}` ||
+    pathname === `${BASE_PATH}/` ||
     pathname === "/";
 
   // Scroll-spy: track which section is closest to the top of the viewport
