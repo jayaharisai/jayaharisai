@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/copy-pages-data.mjs && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "migrate": "node scripts/migrate.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.0.0",

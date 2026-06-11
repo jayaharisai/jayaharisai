@@ -7,6 +7,8 @@ import Link from "next/link";
 import { fetchPages, type PagePostData } from "@/lib/supabase";
 import styles from "./pages.module.css";
 
+const PLACEHOLDER_IMG = "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=400&dpr=1";
+
 export default function PagesIndex() {
   const [pages, setPages] = useState<PagePostData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,22 @@ export default function PagesIndex() {
           Notes on MLOps, LLMOps, backend systems, and the craft of shipping software.
         </p>
 
-        {loading && <p style={{ textAlign: "center", color: "#888" }}>Loading...</p>}
+        {/* Skeleton loading */}
+        {loading && (
+          <div className={styles.list}>
+            {[1, 2, 3].map((i) => (
+              <div key={i} className={styles.skeletonCard}>
+                <div className={`${styles.skeletonImage} ${styles.skeleton}`} />
+                <div className={styles.skeletonBody}>
+                  <div className={`${styles.skeletonTitle} ${styles.skeleton}`} />
+                  <div className={`${styles.skeletonExcerpt} ${styles.skeleton}`} />
+                  <div className={`${styles.skeletonExcerptShort} ${styles.skeleton}`} />
+                  <div className={`${styles.skeletonMeta} ${styles.skeleton}`} />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {!loading && pages.length === 0 && (
           <p style={{ textAlign: "center", color: "#888", marginTop: "2rem" }}>
@@ -41,43 +58,43 @@ export default function PagesIndex() {
           </p>
         )}
 
-        <div className={styles.list}>
-          {pages.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/pages/${post.slug}`}
-              className={styles.card}
-            >
-                {extractCover(post.content) && (
+        {!loading && pages.length > 0 && (
+          <div className={styles.list}>
+            {pages.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/pages/${post.slug}`}
+                className={styles.card}
+              >
                 <div className={styles.imageWrap}>
-                  <img src={extractCover(post.content)!} alt={post.title} className={styles.image} loading="lazy" decoding="async" />
+                  <img src={extractCover(post.content) || PLACEHOLDER_IMG} alt={post.title} className={styles.image} loading="lazy" decoding="async" />
                 </div>
-              )}
-              <div className={styles.body}>
-                <h2 className={styles.cardTitle}>{post.title}</h2>
-                <p className={styles.cardExcerpt}>{post.excerpt}</p>
-                <div className={styles.cardMeta}>
-                  <span>
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <span className={styles.dot}>·</span>
-                  <span>{post.read_time}</span>
-                </div>
-                <div className={styles.tags}>
-                  {post.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>
-                      {tag}
+                <div className={styles.body}>
+                  <h2 className={styles.cardTitle}>{post.title}</h2>
+                  <p className={styles.cardExcerpt}>{post.excerpt}</p>
+                  <div className={styles.cardMeta}>
+                    <span>
+                      {new Date(post.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </span>
-                  ))}
+                    <span className={styles.dot}>·</span>
+                    <span>{post.read_time}</span>
+                  </div>
+                  <div className={styles.tags}>
+                    {post.tags.map((tag) => (
+                      <span key={tag} className={styles.tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
       <VersionBadge />
     </div>

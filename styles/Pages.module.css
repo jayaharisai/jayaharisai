@@ -41,6 +41,13 @@
   margin: 0;
 }
 
+.subtitle {
+  font-size: 14px;
+  color: #888;
+  margin: 8px 0 28px;
+  line-height: 1.6;
+}
+
 .seeAll {
   font-size: var(--font-size-body);
   color: #888;
@@ -155,6 +162,63 @@
   border-radius: 9999px;
 }
 
+/* ── SKELETON LOADING ────────────────────────────────── */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeletonCard {
+  display: flex;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skeletonImage {
+  flex-shrink: 0;
+  width: 200px;
+  height: 130px;
+  border-radius: 0;
+}
+
+.skeletonBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.skeletonTitle {
+  height: 22px;
+  width: 65%;
+}
+
+.skeletonExcerpt {
+  height: 14px;
+  width: 90%;
+}
+
+.skeletonExcerptShort {
+  height: 14px;
+  width: 45%;
+}
+
+.skeletonMeta {
+  height: 12px;
+  width: 30%;
+  margin-top: 4px;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .page {
@@ -166,6 +230,14 @@
     gap: 12px;
   }
   .imageWrap {
+    width: 100%;
+    height: 160px;
+  }
+  .skeletonCard {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .skeletonImage {
     width: 100%;
     height: 160px;
   }

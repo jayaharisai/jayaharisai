@@ -1,10 +1,11 @@
-/**
- * Page Storage
- * ============
- * Stores pages via local Next.js API routes in dev mode.
- * In production (static export), pages data comes from
- * public/pages-data.json which is generated at build time.
- */
+import { createClient } from "@supabase/supabase-js";
+
+// Hardcoded for now — in future, move to GitHub Secrets / env vars.
+// Safe to expose: this is the public anon key (RLS policies protect the DB).
+const supabaseUrl = "https://pujuskutbupmerjhewvp.supabase.co";
+const supabaseAnonKey = "sb_publishable_LfG3ZMdqASs8-Jis81hamw_IsWCwq68";
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export interface PagePostData {
   slug: string;
@@ -20,28 +21,24 @@ export interface PagePostData {
 }
 
 /**
- * Fetch all published pages.
- * In dev: calls the local API route
- * In production: reads the static JSON file (generated at build time)
+ * Fetch all published pages from Supabase.
+ * Works directly from the browser — no server needed.
  */
 export async function fetchPages(): Promise<PagePostData[]> {
   try {
-    const isDev =
-      typeof window !== "undefined" &&
-      (window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1");
+    const { data, error } = await supabase
+      .from("pages")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-    if (isDev) {
-      const res = await fetch("/api/pages/");
-      if (!res.ok) return [];
-      return await res.json();
+    if (error) {
+      console.warn("Supabase fetch error:", error.message);
+      return [];
     }
 
-    // Production: static JSON from GitHub Pages
-    const res = await fetch("/jayaharisai/pages-data.json");
-    if (!res.ok) return [];
-    return await res.json();
-  } catch {
+    return (data as PagePostData[]) || [];
+  } catch (err) {
+    console.warn("Supabase fetch failed:", err);
     return [];
   }
 }
@@ -57,9 +54,8 @@ export async function fetchPageBySlug(
 }
 
 /**
- * Save a new page directly to the data file via the Next.js server environment.
- * In production (static export / GitHub Pages), this will throw an error since
- * there is no running server — you must publish locally and then rebuild + deploy.
+ * Save a new page to Supabase.
+ * Works directly from the browser using the anon key + RLS policy.
  */
 export async function savePage(page: {
   title: string;
@@ -69,28 +65,33 @@ export async function savePage(page: {
   content: string;
   author?: string;
 }): Promise<{ success: boolean; slug?: string; error?: string }> {
-  const isDev =
-    typeof window !== "undefined" &&
-    (window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1");
+  const slug = page.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
-  if (!isDev) {
-    return { success: false, error: "Saving only works in local dev mode. Publish locally, then rebuild & deploy." };
-  }
+  const now = new Date().toISOString().split("T")[0];
 
   try {
-    const res = await fetch("/api/pages/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(page),
+    const { error } = await supabase.from("pages").insert({
+      slug,
+      title: page.title,
+      excerpt: page.excerpt || "No description provided.",
+      date: now,
+      read_time: `${Math.max(1, Math.ceil(page.content.split(" ").length / 200))} min read`,
+      tags: page.tags
+        ? page.tags.split(",").map((t: string) => t.trim()).filter(Boolean)
+        : [],
+      cover: page.cover || "",
+      content: page.content,
+      author: page.author || "Jayaharisai",
     });
 
-    if (!res.ok) {
-      // API route may not be available during builds
-      return await res.json().catch(() => ({ success: false, error: "Failed to reach save endpoint" }));
+    if (error) {
+      return { success: false, error: error.message };
     }
-    const data = await res.json();
-    return data;
+
+    return { success: true, slug };
   } catch (err: any) {
     return { success: false, error: err.message || "Failed to save." };
   }
