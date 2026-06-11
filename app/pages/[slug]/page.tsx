@@ -1,26 +1,29 @@
-import { readFileSync, existsSync } from "fs";
-import { resolve } from "path";
+import { createClient } from "@supabase/supabase-js";
 import PagePostClient from "./PagePostClient";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-/** Pre-render known slugs at build time from published-pages.json */
-export function generateStaticParams() {
-  const filePath = resolve(process.cwd(), "data", "published-pages.json");
-  if (!existsSync(filePath)) {
-    return [{ slug: "_empty" }];
-  }
+// Hardcoded — same as lib/supabase.ts
+const supabaseUrl = "https://pujuskutbupmerjhewvp.supabase.co";
+const supabaseAnonKey = "sb_publishable_LfG3ZMdqASs8-Jis81hamw_IsWCwq68";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+/** Pull all known slugs from Supabase at build time */
+export async function generateStaticParams() {
   try {
-    const raw = readFileSync(filePath, "utf-8");
-    const pages = JSON.parse(raw);
-    if (!Array.isArray(pages) || pages.length === 0) {
-      return [{ slug: "_empty" }];
+    const { data, error } = await supabase
+      .from("pages")
+      .select("slug");
+
+    if (error || !data || data.length === 0) {
+      return [{ slug: "_fallback" }];
     }
-    return pages.map((p: any) => ({ slug: p.slug }));
+
+    return data.map((p: any) => ({ slug: p.slug }));
   } catch {
-    return [{ slug: "_empty" }];
+    return [{ slug: "_fallback" }];
   }
 }
 
