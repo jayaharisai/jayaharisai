@@ -158,7 +158,8 @@ export default function Navbar() {
         suppressObserver.current = false;
       }, 900);
     } else {
-      router.push(HOME_PATH);
+      // Use window.location for reliable navigation on static export
+      window.location.href = BASE_PATH ? `${BASE_PATH}/` : "/";
     }
   };
 
