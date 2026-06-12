@@ -1,6 +1,7 @@
 .contactme {
   width: var(--layout-width);
   margin: 0 auto;
+  padding-bottom: 40px;
 
   display: flex;
   justify-content: space-between;
@@ -18,7 +19,7 @@
 
 .description {
   margin: 10px 0;
-  width: 300px;
+  max-width: 340px;
 
   font-size: var(--font-size-body-large);
   font-weight: 400;
@@ -31,7 +32,7 @@
 }
 
 .primeinput {
-  width: 400px;
+  width: min(100%, 440px);
   margin: 20px 0;
   border-bottom: 1px solid var(--color-text-muted);
 }
@@ -48,8 +49,9 @@
 }
 
 .primebtn {
-  width: 100px;
-  height: 40px;
+  min-width: 84px;
+  height: 38px;
+  padding: 0 18px;
 
   display: flex;
   justify-content: center;
@@ -57,9 +59,11 @@
 
   background-color: black;
   color: white;
+  border: 0;
 
-  font-size: var(--font-size-body);
+  font-size: var(--font-size-body-small);
   font-weight: 300;
+  font-family: inherit;
 
   border-radius: 50px;
   cursor: pointer;
@@ -85,6 +89,7 @@
 /* LINKS (same style as your homepage) */
 .links {
   display: flex;
+  flex-wrap: wrap;
   gap: 30px;
   margin-top: 20px;
 }
@@ -119,7 +124,57 @@
     flex-direction: column;
     gap: 40px;
   }
+
+  .inputs {
+    margin-top: 40px;
+  }
+
   .primeinput {
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactme {
+    gap: 28px;
+    padding-bottom: 20px;
+  }
+
+  .description {
+    width: auto;
+    font-size: 14px;
+  }
+
+  .inputs {
+    margin-top: 28px;
+  }
+
+  .primeinput {
+    margin: 14px 0;
+  }
+
+  .primeinput input {
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .primebtn {
+    min-width: 70px;
+    height: 32px;
+    padding: 0 14px;
+    font-size: 11px;
+  }
+
+  .heading3 {
+    margin: 12px 0 20px;
+  }
+
+  .details,
+  .links a {
+    font-size: 13px;
+  }
+
+  .links {
+    gap: 14px 22px;
   }
 }

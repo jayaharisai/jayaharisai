@@ -4,7 +4,9 @@
   --color-text-muted: gray;
   --color-text-dark: #444;
   --color-border: #eee;
-  --layout-width: 90%;
+  --layout-width: min(90%, 1720px);
+  --content-width: 900px;
+  --reading-width: 720px;
   --transition-normal: 0.3s;
 
   /* Typography Scale */
@@ -28,6 +30,27 @@ html {
 body {
   margin: 0px;
   padding: 0px;
+  color: #1a1a1a;
+  background: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
 }
 
 /* ============================================
@@ -50,4 +73,13 @@ div[id] {
 }
 *::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
+}
+
+@media (max-width: 600px) {
+  :root {
+    --layout-width: calc(100% - 36px);
+    --font-size-h1: 28px;
+    --font-size-h2: 21px;
+    --font-size-body-large: 15px;
+  }
 }

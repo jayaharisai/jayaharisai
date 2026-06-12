@@ -10,7 +10,34 @@ export const PROFILE_DATA = {
   
   hero: {
     title: "A Backend and AI/ML Engineer building scalable AI and backend systems.",
-    description: "I build scalable backend systems and intelligent AI applications powered by LLMs, cloud infrastructure, and modern MLOps practices."
+    description: "I build scalable backend systems and intelligent AI applications powered by LLMs, cloud infrastructure, and modern MLOps practices.",
+    signal: {
+      label: "How I think about systems",
+      statement: "Useful intelligence needs reliable engineering around it.",
+      flow: [
+        {
+          index: "01",
+          title: "Human need",
+          detail: "Start with the decision or task that should become easier."
+        },
+        {
+          index: "02",
+          title: "System design",
+          detail: "Shape clear APIs, data flows, and boundaries that can evolve."
+        },
+        {
+          index: "03",
+          title: "Intelligence",
+          detail: "Add models, retrieval, and agents only where they create value."
+        },
+        {
+          index: "04",
+          title: "Reliable delivery",
+          detail: "Measure, observe, deploy, and improve the complete system."
+        }
+      ],
+      principles: ["Clarity over complexity", "Evidence over assumptions", "Systems that help people"]
+    }
   },
 
   cv: {

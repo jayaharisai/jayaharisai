@@ -4,7 +4,7 @@
 
 .article {
   width: 100%;
-  max-width: 720px;
+  max-width: var(--reading-width);
   margin: 0 auto;
   padding: 90px 28px 100px 28px;
   box-sizing: border-box;
@@ -223,7 +223,7 @@
     font-size: 13.5px;
   }
   .link {
-    width: 100%;
+    width: auto;
     text-align: center;
   }
 }

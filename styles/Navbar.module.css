@@ -273,9 +273,10 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    width: 100%;
+    width: auto;
+    align-self: center;
     margin-top: 6px;
-    padding: 10px 14px;
+    padding: 8px 14px;
     background: #000;
     color: #fff;
     font-size: var(--font-size-xs);
@@ -298,5 +299,24 @@
     width: 10px;
     height: 10px;
     filter: brightness(0) invert(1);
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar {
+    padding: 5px 12px;
+  }
+
+  .mobileBar {
+    min-height: 40px;
+  }
+
+  .mobileCenter .profileimg img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .mobileDropdownContent {
+    margin-top: 62px;
   }
 }

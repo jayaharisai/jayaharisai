@@ -425,3 +425,63 @@
   background: #f5f5f5; border-radius: 6px;
   font-size: 11px; font-weight: 600; color: #734f96; flex-shrink: 0;
 }
+
+@media (max-width: 700px) {
+  .topbar {
+    padding: 10px 14px;
+  }
+
+  .authorBadge {
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .publishBtn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .keyModal {
+    width: calc(100% - 36px);
+    max-width: none;
+    padding: 28px 20px 22px;
+    box-sizing: border-box;
+  }
+
+  .keyInputRow {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .keySubmit {
+    align-self: flex-start;
+    height: 34px;
+    padding: 0 16px;
+    font-size: 12px;
+  }
+
+  .editorWrapper {
+    padding: 28px 18px 60px;
+  }
+
+  .titleInput {
+    font-size: 30px;
+  }
+
+  .excerptInput,
+  .editor :global(.ProseMirror) {
+    font-size: 14px;
+  }
+
+  .bubbleMenu {
+    max-width: calc(100vw - 20px);
+    overflow-x: auto;
+  }
+
+  .slashMenu {
+    min-width: min(220px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+  }
+}
