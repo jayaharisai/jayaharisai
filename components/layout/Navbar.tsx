@@ -7,7 +7,7 @@ import { PROFILE_DATA } from "@/data/profile";
 import { asset, BASE_PATH } from "@/lib/basePath";
 
 const HOME_PATH = "/"; // Next.js router auto-prepends basePath from next.config.ts
-const SECTIONS = ["home", "work", "about", "pages", "contact"] as const;
+const SECTIONS = ["home", "work", "about", "pages", "roadmaps", "contact"] as const;
 type SectionId = (typeof SECTIONS)[number];
 
 export default function Navbar() {
@@ -209,6 +209,13 @@ export default function Navbar() {
         >
           Pages
         </div>
+
+        <div
+          onClick={() => scrollToSection("roadmaps")}
+          className={activeSection === "roadmaps" ? styles.active : ""}
+        >
+          Roadmaps
+        </div>
       </div>
 
       {/* Desktop: contact button */}
@@ -279,6 +286,13 @@ export default function Navbar() {
             className={`${styles.mobileMenuItem} ${activeSection === "pages" ? styles.active : ""}`}
           >
             Pages
+          </div>
+
+          <div
+            onClick={() => scrollToSection("roadmaps")}
+            className={`${styles.mobileMenuItem} ${activeSection === "roadmaps" ? styles.active : ""}`}
+          >
+            Roadmaps
           </div>
 
           <div className={styles.mobileContactBtn} onClick={() => scrollToSection("contact")}>

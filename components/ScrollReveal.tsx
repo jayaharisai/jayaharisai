@@ -42,9 +42,9 @@ export default function ScrollReveal({ children, threshold = 0.05, startVisible 
       ref={ref}
       style={{
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(40px)",
+        transform: isVisible ? "none" : "translateY(40px)",
         transition: "opacity 1.0s cubic-bezier(0.16, 1, 0.3, 1), transform 1.0s cubic-bezier(0.16, 1, 0.3, 1)",
-        willChange: "opacity, transform",
+        willChange: isVisible ? "auto" : "opacity, transform",
       }}
     >
       {children}
