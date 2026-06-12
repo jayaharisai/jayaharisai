@@ -1,5 +1,5 @@
 .page {
-  width: min(1180px, 90%);
+  width: min(1180px, var(--layout-width));
   margin: 0 auto;
   padding: 120px 0 100px;
   box-sizing: border-box;
@@ -428,7 +428,7 @@
   }
 
   .detailColumns {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .branch {
@@ -438,12 +438,16 @@
 
 @media (max-width: 700px) {
   .page {
-    width: calc(100% - 36px);
+    width: var(--layout-width);
     padding: 100px 0 60px;
   }
 
   .header {
     margin-bottom: 28px;
+  }
+
+  .title {
+    font-size: 30px;
   }
 
   .index {

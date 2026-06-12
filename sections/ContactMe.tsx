@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "@/styles/ContactMe.module.css";
 import { PROFILE_DATA } from "@/data/profile";
 import { asset } from "@/lib/basePath";
@@ -26,9 +27,9 @@ export default function ContactMe() {
             <input type="text" placeholder="Message" />
           </div>
 
-          <div className={styles.primebtn}>
-            <div>Send</div>
-          </div>
+          <button type="button" className={styles.primebtn}>
+            Send
+          </button>
         </div>
       </div>
 
@@ -41,15 +42,15 @@ export default function ContactMe() {
 
         <div className={styles.links}>
           <a href={PROFILE_DATA.linkedinUrl} target="_blank" rel="noopener noreferrer">
-            LinkedIn <img src={asset("/open.svg")} alt="open" />
+            LinkedIn <Image src={asset("/open.svg")} alt="" width={12} height={12} />
           </a>
 
           <a href={PROFILE_DATA.instagramUrl} target="_blank" rel="noopener noreferrer">
-            Instagram <img src={asset("/open.svg")} alt="open" />
+            Instagram <Image src={asset("/open.svg")} alt="" width={12} height={12} />
           </a>
 
           <a href={PROFILE_DATA.githubUrl} target="_blank" rel="noopener noreferrer">
-            Github <img src={asset("/open.svg")} alt="open" />
+            Github <Image src={asset("/open.svg")} alt="" width={12} height={12} />
           </a>
         </div>
       </div>

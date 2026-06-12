@@ -278,3 +278,29 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 600px) {
+  .modal,
+  .keyModal {
+    width: calc(100% - 36px);
+    max-width: none;
+    padding: 28px 20px 22px;
+    box-sizing: border-box;
+  }
+
+  .keyInputRow,
+  .metaRow {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+
+  .cancelBtn,
+  .saveBtn {
+    height: 34px;
+    padding: 0 15px;
+  }
+}
