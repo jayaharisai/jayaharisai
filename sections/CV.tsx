@@ -65,16 +65,6 @@ export default function CV() {
             <p>{PROFILE_DATA.cv.focusAreas}</p>
           </div>
 
-          <div className={styles.block}>
-            <h3>Projects</h3>
-
-            {PROFILE_DATA.cv.projects.map((project, index) => (
-              <div key={index} className={styles.item}>
-                <h4>{project.title}</h4>
-                <p>{project.description}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>

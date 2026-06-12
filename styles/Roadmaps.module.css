@@ -1,0 +1,226 @@
+.page {
+  width: var(--layout-width);
+  margin: auto;
+  margin-bottom: 150px;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  padding: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: rgba(245, 242, 248, 0.42);
+  border: 0;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  transition:
+    opacity 0.35s ease,
+    backdrop-filter 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease;
+}
+
+.backdropVisible {
+  pointer-events: auto;
+  opacity: 1;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-weight: 400;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  align-items: stretch;
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transform-origin: center top;
+  display: flex;
+  flex-direction: column;
+  height: 208px;
+  box-sizing: border-box;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s ease,
+    border-color 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.cardExpanded {
+  z-index: 1101;
+  border-color: rgba(0, 0, 0, 0.16);
+  transform: translateY(-10px);
+  box-shadow: 0 18px 45px rgba(45, 30, 58, 0.2);
+}
+
+.cardMain {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  justify-content: space-between;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cardTitle {
+  font-size: 17px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardDescription {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.detailsBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 12.5px;
+  color: var(--color-primary);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.detailsBtn:hover {
+  opacity: 0.7;
+}
+
+.expandedContent {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  right: -1px;
+  max-height: 0;
+  padding: 0 20px;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-top: 0;
+  box-shadow: 0 26px 45px rgba(45, 30, 58, 0.16);
+  transform: translateY(-4px);
+  transform-origin: top;
+  transition:
+    max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.45s;
+}
+
+.cardExpanded .expandedContent {
+  max-height: 180px;
+  padding: 0 20px 20px;
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.expandedContent p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.fullPageLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--color-primary);
+  font-size: 12.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity var(--transition-normal) ease;
+}
+
+.fullPageLink:hover {
+  opacity: 0.65;
+}
+
+.fullPageLink img {
+  width: 11px;
+  height: 11px;
+  filter: var(--color-primary-filter);
+}
+
+@media (max-width: 700px) {
+  .page {
+    margin-bottom: 80px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cardMain {
+    padding: 16px;
+  }
+
+  .cardExpanded {
+    transform: translateY(-6px);
+  }
+
+  .expandedContent {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .cardExpanded .expandedContent {
+    padding: 0 16px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .expandedContent,
+  .backdrop {
+    transition-duration: 0.01ms;
+  }
+}

@@ -8,6 +8,7 @@ import Footer from "@/sections/Footer";
 import SectionHome from "@/sections/SectionHome";
 import Work from "@/sections/Work";
 import Pages from "@/sections/Pages";
+import Roadmaps from "@/sections/Roadmaps";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
@@ -29,6 +30,9 @@ export default function Home() {
       </ScrollReveal>
       <ScrollReveal>
         <Pages/>
+      </ScrollReveal>
+      <ScrollReveal>
+        <Roadmaps/>
       </ScrollReveal>
       <ScrollReveal>
         <ContactMe/>
