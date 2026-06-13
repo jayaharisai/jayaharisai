@@ -5,6 +5,7 @@
 .article {
   width: 100%;
   max-width: var(--reading-width);
+  min-height: 100vh;
   margin: 0 auto;
   padding: 90px 28px 100px 28px;
   box-sizing: border-box;
@@ -127,7 +128,7 @@
 }
 
 .content code {
-  background: rgba(115, 79, 150, 0.06);
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
   color: var(--color-text-dark);
   padding: 1px 5px;
   border-radius: 3px;
@@ -136,8 +137,8 @@
 }
 
 .content pre {
-  background: #f7f7f7;
-  color: #333;
+  background: var(--color-surface-soft);
+  color: var(--color-text);
   padding: 14px 18px;
   border-radius: 0;
   border: 1px solid var(--color-border);
@@ -181,7 +182,7 @@
   color: var(--color-primary);
   font-size: 11px;
   font-weight: 400;
-  border: 1px solid rgba(115, 79, 150, 0.25);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
   border-radius: 9999px;
 }
 

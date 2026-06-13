@@ -2,8 +2,10 @@
 .page {
   width: var(--layout-width);
   max-width: var(--content-width);
+  min-height: 100vh;
   margin: 0 auto;
   padding: 120px 0 80px 0;
+  box-sizing: border-box;
 }
 
 .title {
@@ -111,7 +113,7 @@
   color: var(--color-primary);
   font-size: 11px;
   font-weight: 400;
-  border: 1px solid rgba(115, 79, 150, 0.25);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
   border-radius: 9999px;
 }
 
@@ -125,7 +127,7 @@
   border: none;
   border-radius: 9999px;
   background: transparent;
-  color: #ccc;
+  color: var(--color-text-muted);
   font-size: 11px;
   font-family: inherit;
   cursor: pointer;
@@ -154,7 +156,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.05);
+  background: color-mix(in srgb, var(--color-bg) 20%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 9999;
@@ -166,11 +168,12 @@
 .keyModal {
   background: var(--color-surface);
   border-radius: 16px;
+  border: 1px solid var(--color-border);
   padding: 32px;
   width: 380px;
   max-width: 90vw;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px var(--color-shadow);
 }
 
 .keyCloseBtn {
@@ -192,7 +195,7 @@
 }
 
 .keyCloseBtn:hover {
-  background: #f0f0f0;
+  background: var(--color-surface-soft);
 }
 
 .keyLockIcon {
@@ -227,7 +230,7 @@
   height: 40px;
   padding: 0;
   border: none;
-  border-bottom: 1px solid #888;
+  border-bottom: 1px solid var(--color-text-muted);
   font-size: 13px;
   font-family: inherit;
   outline: none;
@@ -266,7 +269,7 @@
 .keyError {
   text-align: center;
   font-size: 12px;
-  color: #e74c3c;
+  color: #ff6b5f;
   margin: 12px 0 0;
 }
 
@@ -278,7 +281,12 @@
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-soft) 25%,
+    color-mix(in srgb, var(--color-surface-soft) 70%, var(--color-text) 8%) 50%,
+    var(--color-surface-soft) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 4px;
@@ -344,7 +352,8 @@
   .deleteBtn {
     opacity: 1;
     color: var(--color-text-muted);
-    background: rgba(255, 255, 255, 0.92);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
   }
 
   .keyModal {
