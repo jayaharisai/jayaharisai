@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
-import Script from "next/script";
 
 import "./globals.css";
 
@@ -34,6 +33,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
+        {/* Inline theme bootstrap — plain <script> instead of Next.js Script component
+            because Next.js Script (beforeInteractive) is dropped during static export
+            (output: "export"). Without this, sub-pages flashed light-theme colours on
+            dark-theme users before JS hydrates, making text invisible. */}
+        <script
+          id="theme-bootstrap"
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("theme")||((matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){}`,
+          }}
+        />
         {/* Warm up DNS for Pexels early — saves 100-300ms on first image load */}
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />
@@ -41,9 +50,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={poppins.className}>
-        <Script id="theme-bootstrap" strategy="beforeInteractive">
-          {`try{var t=localStorage.getItem("theme")||((matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){}`}
-        </Script>
         {children}
       </body>
     </html>
