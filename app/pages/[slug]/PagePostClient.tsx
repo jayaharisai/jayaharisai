@@ -104,19 +104,18 @@ export default function PagePostClient({ slug }: { slug: string }) {
 }
 
 /**
- * Strip inline styles that break dark theme.
- * TipTap's Color/FontFamily extensions save hardcoded values (e.g.
- * style="color:#000000;font-family:Inter") into the HTML.  These override
- * CSS custom properties in dark mode and make text invisible.
+ * Remove all inline style attributes from editor-rendered HTML.
+ *
+ * TipTap's Color / FontFamily / TextStyle extensions inject hardcoded inline
+ * styles (e.g. style="color:rgb(26,26,26);font-family:Inter") that override
+ * CSS custom-property theming in dark mode and make text invisible.
+ *
+ * Since the site already provides full typography via CSS modules
+ * (post.module.css .content { color: var(--color-text-dark); ... }),
+ * inline styles are redundant and actively harmful for theme switching.
  */
 function sanitizeContent(html: string): string {
-  return html.replace(
-    / style="[^"]*?(?:color|background(?:-color)?)\s*:[^"]*?"/gi,
-    ""
-  ).replace(
-    / style="[^"]*?font-family\s*:[^"]*?"/gi,
-    ""
-  );
+  return html.replace(/ style="[^"]*"/gi, "");
 }
 
 /** Extract first image src from HTML content, or return null */
