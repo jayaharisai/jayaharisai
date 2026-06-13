@@ -19,8 +19,8 @@
 
 .addBtn {
   padding: 0 14px;
-  background: #000;
-  color: #fff;
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
   border: none;
   border-radius: 9999px;
   height: 40px;
@@ -43,21 +43,21 @@
 
 .subtitle {
   font-size: 14px;
-  color: #888;
+  color: var(--color-text-muted);
   margin: 8px 0 28px;
   line-height: 1.6;
 }
 
 .seeAll {
   font-size: var(--font-size-body);
-  color: #888;
+  color: var(--color-text-muted);
   text-decoration: none;
   font-weight: 400;
   transition: color 0.2s ease;
 }
 
 .seeAll:hover {
-  color: #555;
+  color: var(--color-text-dark);
 }
 
 .emptyText {
@@ -91,7 +91,7 @@
 }
 
 .card:hover {
-  background: rgba(0, 0, 0, 0.025);
+  background: var(--color-subtle-hover);
 }
 
 .imageWrap {
@@ -100,7 +100,7 @@
   height: 130px;
   overflow: hidden;
   border-radius: 0;
-  background: #f5f5f5;
+  background: var(--color-surface-soft);
 }
 
 .image {
@@ -120,7 +120,7 @@
 .cardTitle {
   font-size: 18px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
 }
