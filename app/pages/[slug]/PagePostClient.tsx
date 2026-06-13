@@ -81,7 +81,7 @@ export default function PagePostClient({ slug }: { slug: string }) {
 
         <div
           className={styles.content}
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizeContent(post.content) }}
         />
 
         <div className={styles.tags}>
@@ -100,6 +100,22 @@ export default function PagePostClient({ slug }: { slug: string }) {
       </article>
       <VersionBadge />
     </div>
+  );
+}
+
+/**
+ * Strip inline styles that break dark theme.
+ * TipTap's Color/FontFamily extensions save hardcoded values (e.g.
+ * style="color:#000000;font-family:Inter") into the HTML.  These override
+ * CSS custom properties in dark mode and make text invisible.
+ */
+function sanitizeContent(html: string): string {
+  return html.replace(
+    / style="[^"]*?(?:color|background(?:-color)?)\s*:[^"]*?"/gi,
+    ""
+  ).replace(
+    / style="[^"]*?font-family\s*:[^"]*?"/gi,
+    ""
   );
 }
 
