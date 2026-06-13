@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
         {/* Warm up DNS for Pexels early — saves 100-300ms on first image load */}
         <link rel="preconnect" href="https://images.pexels.com" />
@@ -39,7 +40,12 @@ export default function RootLayout({
         {/* Preconnect to the font origin (already handled by next/font, but explicit doesn't hurt) */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Script id="theme-bootstrap" strategy="beforeInteractive">
+          {`try{var t=localStorage.getItem("theme")||((matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){}`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }

@@ -25,14 +25,14 @@
 
 .seeAll {
   font-size: var(--font-size-body);
-  color: #888;
+  color: var(--color-text-muted);
   text-decoration: none;
   font-weight: 400;
   transition: color 0.2s ease;
 }
 
 .seeAll:hover {
-  color: #555;
+  color: var(--color-text-dark);
 }
 
 .emptyText {
@@ -72,7 +72,7 @@
 }
 
 .card:hover {
-  background: rgba(0, 0, 0, 0.025); /* slightly darker */
+  background: var(--color-subtle-hover); /* slightly darker */
 }
 
 .imageWrap {
@@ -81,7 +81,7 @@
   height: 130px;
   overflow: hidden;
   border-radius: 0;
-  background: #f5f5f5;
+  background: var(--color-surface-soft);
 }
 
 .image {
@@ -101,7 +101,7 @@
 .cardTitle {
   font-size: 18px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
 }

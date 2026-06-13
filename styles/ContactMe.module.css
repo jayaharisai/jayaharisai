@@ -57,8 +57,8 @@
   justify-content: center;
   align-items: center;
 
-  background-color: black;
-  color: white;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
   border: 0;
 
   font-size: var(--font-size-body-small);

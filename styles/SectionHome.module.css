@@ -95,8 +95,8 @@
   width: 100%;
   padding: 24px 0 0 28px;
   box-sizing: border-box;
-  border-top: 1px solid #ded8e2;
-  border-left: 1px solid #ded8e2;
+  border-top: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+  border-left: 1px solid color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
 }
 
 .signal::before {
@@ -114,7 +114,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 28px;
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 9px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -132,7 +132,7 @@
   height: 6px;
   background: var(--color-primary);
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(115, 79, 150, 0.35);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 35%, transparent);
   animation: signalPulse 2.4s ease-out infinite;
 }
 
@@ -146,7 +146,7 @@
 
 .signalIntro p {
   margin: 4px 0 0;
-  color: #888;
+  color: var(--color-text-muted);
   font-size: 10px;
   line-height: 1.6;
   text-transform: uppercase;
@@ -155,7 +155,7 @@
 
 .signalIntro h2 {
   margin: 0;
-  color: #242126;
+  color: var(--color-text);
   font-size: clamp(19px, 1.6vw, 25px);
   font-weight: 300;
   line-height: 1.45;
@@ -175,7 +175,12 @@
   right: 12.5%;
   left: 12.5%;
   height: 1px;
-  background: linear-gradient(90deg, #d9cce2, var(--color-primary), #d9cce2);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-primary) 22%, var(--color-border)),
+    var(--color-primary),
+    color-mix(in srgb, var(--color-primary) 22%, var(--color-border))
+  );
   content: "";
 }
 
@@ -191,7 +196,7 @@
   left: 50%;
   width: 1px;
   height: 14px;
-  background: #d9cce2;
+  background: color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
   content: "";
 }
 
@@ -205,14 +210,14 @@
 .flowStep strong {
   display: block;
   margin-bottom: 7px;
-  color: #222;
+  color: var(--color-text);
   font-size: 11px;
   font-weight: 500;
 }
 
 .flowStep p {
   margin: 0;
-  color: #929292;
+  color: var(--color-text-muted);
   font-size: 9.5px;
   line-height: 1.6;
 }
@@ -223,11 +228,11 @@
   gap: 30px;
   margin-top: 30px;
   padding-top: 16px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
 }
 
 .principles > span {
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 9px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -243,7 +248,7 @@
   position: relative;
   margin: 0;
   padding-left: 10px;
-  color: #555;
+  color: var(--color-text-dark);
   font-size: 10px;
 }
 
@@ -260,10 +265,10 @@
 
 @keyframes signalPulse {
   70% {
-    box-shadow: 0 0 0 7px rgba(115, 79, 150, 0);
+    box-shadow: 0 0 0 7px transparent;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(115, 79, 150, 0);
+    box-shadow: 0 0 0 0 transparent;
   }
 }
 
@@ -352,7 +357,12 @@
     left: 0;
     width: 1px;
     height: auto;
-    background: linear-gradient(180deg, #d9cce2, var(--color-primary), #d9cce2);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 22%, var(--color-border)),
+      var(--color-primary),
+      color-mix(in srgb, var(--color-primary) 22%, var(--color-border))
+    );
   }
 
   .flowStep {

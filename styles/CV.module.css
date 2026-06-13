@@ -15,12 +15,12 @@
   display: grid;
   grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
   gap: 40px;
-  align-items: start;
+  align-items: stretch;
 }
 
 /* LEFT SIDE */
 .left {
-  background: #fff;
+  background: var(--color-surface);
   padding: 20px;
   border: 1px solid var(--color-border);
 }
@@ -35,8 +35,8 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #000;
-  color: #fff;
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
 
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@
 
 /* RIGHT SIDE */
 .right {
-  background: #fff;
+  background: var(--color-surface);
   padding: 20px;
   border: 1px solid var(--color-border);
 }
@@ -145,7 +145,7 @@
 .experienceItem {
   margin-bottom: 24px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .experienceItem:last-child {

@@ -9,7 +9,7 @@
   font-size: var(--font-size-h1);
   font-weight: 400;
   margin: 0 0 8px 0;
-  color: #1a1a1a;
+  color: var(--color-text);
 }
 
 .subtitle {
@@ -50,7 +50,7 @@
 }
 
 .card:hover {
-  background: rgba(0, 0, 0, 0.025);
+  background: var(--color-subtle-hover);
 }
 
 .imageWrap {
@@ -59,7 +59,7 @@
   height: 130px;
   overflow: hidden;
   border-radius: 0;
-  background: #f5f5f5;
+  background: var(--color-surface-soft);
 }
 
 .image {
@@ -79,7 +79,7 @@
 .cardTitle {
   font-size: 18px;
   font-weight: 500;
-  color: #1a1a1a;
+  color: var(--color-text);
   margin: 0;
   line-height: 1.3;
 }

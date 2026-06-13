@@ -9,16 +9,27 @@ import { asset, BASE_PATH } from "@/lib/basePath";
 const HOME_PATH = "/"; // Next.js router auto-prepends basePath from next.config.ts
 const SECTIONS = ["home", "work", "about", "pages", "roadmaps", "contact"] as const;
 type SectionId = (typeof SECTIONS)[number];
+type Theme = "light" | "dark";
+
+const readBrowserTheme = (): Theme => {
+  const savedTheme = window.localStorage.getItem("theme");
+  if (savedTheme === "dark" || savedTheme === "light") return savedTheme;
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState<string>("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<Theme>("light");
+  const [isThemeGlitching, setIsThemeGlitching] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   // When true, we IGNORE observer updates so the highlighted section
   // doesn't flicker during smooth-scroll (user-initiated OR browser-restored).
   const suppressObserver = useRef(false);
+  const themeGlitchTimer = useRef<number | null>(null);
 
   // True only when we're on the home page
   // In production basePath is /jayaharisai, so pathname is "/jayaharisai/"
@@ -28,11 +39,46 @@ export default function Navbar() {
     pathname === `${BASE_PATH}/` ||
     pathname === "/";
 
+  useEffect(() => {
+    const themeTimer = window.setTimeout(() => {
+      const browserTheme = readBrowserTheme();
+      setTheme(browserTheme);
+      document.documentElement.dataset.theme = browserTheme;
+    }, 0);
+
+    return () => window.clearTimeout(themeTimer);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (themeGlitchTimer.current) window.clearTimeout(themeGlitchTimer.current);
+      document.documentElement.classList.remove("theme-glitching");
+    };
+  }, []);
+
+  const toggleTheme = () => {
+    if (themeGlitchTimer.current) window.clearTimeout(themeGlitchTimer.current);
+    setIsThemeGlitching(true);
+    document.documentElement.classList.add("theme-glitching");
+    themeGlitchTimer.current = window.setTimeout(() => {
+      setIsThemeGlitching(false);
+      document.documentElement.classList.remove("theme-glitching");
+      themeGlitchTimer.current = null;
+    }, 720);
+
+    setTheme((current) => {
+      const nextTheme = current === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = nextTheme;
+      window.localStorage.setItem("theme", nextTheme);
+      return nextTheme;
+    });
+  };
+
   // Scroll-spy: track which section is closest to the top of the viewport
   useEffect(() => {
     if (!isHome) {
-      setActiveSection("");
-      return;
+      const resetTimer = window.setTimeout(() => setActiveSection(""), 0);
+      return () => window.clearTimeout(resetTimer);
     }
 
     // ---- INITIAL SETUP ----
@@ -66,7 +112,7 @@ export default function Navbar() {
     // Lock the observer while we set the initial highlight and let any
     // browser-initiated smooth scroll complete.
     suppressObserver.current = true;
-    setActiveSection(initialPick());
+    const initialTimer = window.setTimeout(() => setActiveSection(initialPick()), 0);
     // Release the lock after 1000ms — enough for browser scroll restoration
     // to finish on slow devices.
     const releaseTimer = window.setTimeout(() => {
@@ -107,6 +153,7 @@ export default function Navbar() {
     });
 
     return () => {
+      window.clearTimeout(initialTimer);
       window.clearTimeout(releaseTimer);
       observer.disconnect();
     };
@@ -168,7 +215,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${isThemeGlitching ? styles.themeGlitch : ""}`}>
       {/* Desktop: left side - profile + email */}
       <div
         className={styles.mydetail}
@@ -219,13 +266,26 @@ export default function Navbar() {
       </div>
 
       {/* Desktop: contact button */}
-      <div className={styles.primebtn}>
-        <div className={styles.primebtninner} onClick={() => scrollToSection("contact")}>
-          Contact me
-        </div>
+      <div className={styles.actions}>
+        <button
+          type="button"
+          className={styles.themeToggle}
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+          aria-pressed={theme === "dark"}
+        >
+          <span>{theme === "dark" ? "Dark" : "Light"}</span>
+          <i aria-hidden="true" />
+        </button>
 
-        <div className={styles.usericon}>
-          <img src={asset("/open.svg")} alt="link" />
+        <div className={styles.primebtn}>
+          <div className={styles.primebtninner} onClick={() => scrollToSection("contact")}>
+            Contact me
+          </div>
+
+          <div className={styles.usericon}>
+            <img src={asset("/open.svg")} alt="link" />
+          </div>
         </div>
       </div>
 
@@ -294,6 +354,17 @@ export default function Navbar() {
           >
             Roadmaps
           </div>
+
+          <button
+            type="button"
+            className={styles.mobileThemeToggle}
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            aria-pressed={theme === "dark"}
+          >
+            <span>{theme === "dark" ? "Dark theme" : "Light theme"}</span>
+            <i aria-hidden="true" />
+          </button>
 
           <div className={styles.mobileContactBtn} onClick={() => scrollToSection("contact")}>
             <span>Contact me</span>

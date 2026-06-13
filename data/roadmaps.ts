@@ -28,6 +28,18 @@ export interface RoadmapTopic {
   resources: RoadmapResource[];
 }
 
+export interface RoadmapSkillGuide {
+  what: string;
+  why: string;
+  where: string;
+}
+
+export interface RoadmapTopicSupplement {
+  topicId: string;
+  tools: string[];
+  outcomes: string[];
+}
+
 export interface RoadmapStage {
   id: string;
   index: string;
@@ -99,6 +111,502 @@ export const ROADMAP_DATA: RoadmapItem[] = [
     description: "Design and deploy intelligent AI systems at scale",
     tooltip:
       "Cover LLMs, RAG pipelines, embeddings, vector databases (Pinecone/Weaviate), fine-tuning, prompt engineering, MLOps, model evaluation, and full-stack AI systems.",
+  },
+];
+
+export const ROADMAP_SKILL_GUIDES: Record<string, RoadmapSkillGuide> = {
+  "variables-data-types": {
+    what: "The basic containers and shapes of data in Python: strings, numbers, booleans, lists, dictionaries, tuples, and sets.",
+    why: "Every program is data plus behavior. If you model data cleanly, the rest of the application becomes simpler to reason about.",
+    where: "Used in scripts, APIs, ETL jobs, validation layers, configs, and every backend service.",
+  },
+  "loops-conditions": {
+    what: "Control-flow tools that let a program make decisions and repeat work.",
+    why: "They turn static code into logic that can react to users, files, API responses, and changing business rules.",
+    where: "Used in data validation, batch processing, automation scripts, API logic, and workflow orchestration.",
+  },
+  functions: {
+    what: "Reusable blocks of behavior with clear inputs and outputs.",
+    why: "Functions reduce duplication, make code testable, and help teams reason about one small behavior at a time.",
+    where: "Used in every production Python codebase: utilities, route handlers, data transforms, validators, and tests.",
+  },
+  "modules-imports": {
+    what: "A way to split Python code into files and packages that can be imported where needed.",
+    why: "Without modules, projects become one large script. Modules create boundaries and help teams scale codebases.",
+    where: "Used in backend services, Python packages, CLI tools, shared utilities, and deployable applications.",
+  },
+  "exception-handling": {
+    what: "Python's structured way to handle errors using try, except, finally, and custom exceptions.",
+    why: "Production code must fail clearly. Good error handling prevents silent data loss and confusing crashes.",
+    where: "Used around file access, API calls, database writes, pipeline jobs, and external service integrations.",
+  },
+  "file-io": {
+    what: "Reading from and writing to files such as text, CSV, JSON, logs, and binary assets.",
+    why: "Files are the simplest persistence layer and the starting point for many ETL and automation workflows.",
+    where: "Used in reporting jobs, config loading, data ingestion, logs, exports, and local tooling.",
+  },
+  "file-i-o": {
+    what: "Reading from and writing to files such as text, CSV, JSON, logs, and binary assets.",
+    why: "Files are the simplest persistence layer and the starting point for many ETL and automation workflows.",
+    where: "Used in reporting jobs, config loading, data ingestion, logs, exports, and local tooling.",
+  },
+  "classes-objects": {
+    what: "A way to group state and behavior into reusable objects.",
+    why: "Classes help model real business concepts and keep related behavior together when procedural code becomes messy.",
+    where: "Used in domain models, service classes, SDK clients, database repositories, and framework internals.",
+  },
+  inheritance: {
+    what: "A way for one class to reuse or specialize behavior from another class.",
+    why: "It can reduce duplication, but should be used carefully because composition is often clearer.",
+    where: "Used in framework extension points, custom exceptions, plugin systems, and shared base models.",
+  },
+  polymorphism: {
+    what: "Different objects exposing the same interface so code can work with them interchangeably.",
+    why: "It lets systems stay flexible: swap implementations without rewriting the calling code.",
+    where: "Used in payment providers, storage adapters, model providers, notification channels, and strategy patterns.",
+  },
+  encapsulation: {
+    what: "Keeping internal details hidden behind a clean public interface.",
+    why: "It protects the rest of the codebase from accidental coupling and makes change safer.",
+    where: "Used in service layers, SDKs, database access, domain objects, and reusable libraries.",
+  },
+  abstraction: {
+    what: "A simplified interface over complex internal behavior.",
+    why: "Good abstractions let users and teams work with intent instead of implementation details.",
+    where: "Used in APIs, repositories, model wrappers, pipeline operators, and platform tooling.",
+  },
+  decorators: {
+    what: "Functions that wrap other functions or classes to add behavior.",
+    why: "They keep cross-cutting logic like auth, retries, logging, caching, and timing out of core business code.",
+    where: "Used heavily in FastAPI routes, Flask/Django views, pytest fixtures, caching, and observability.",
+  },
+  generators: {
+    what: "Lazy iterators that yield values one at a time instead of building everything in memory.",
+    why: "They make data processing more memory-efficient and cleaner for streams or large files.",
+    where: "Used in file processing, pagination, streaming APIs, ETL pipelines, and large dataset transformations.",
+  },
+  iterators: {
+    what: "Objects that produce a sequence of values using Python's iteration protocol.",
+    why: "They make custom data traversal predictable and composable.",
+    where: "Used in data loaders, streaming processors, batch jobs, parsers, and SDK pagination.",
+  },
+  "context-managers": {
+    what: "Objects used with `with` to safely acquire and release resources.",
+    why: "They prevent leaks and make cleanup reliable even when errors occur.",
+    where: "Used for files, database sessions, locks, transactions, temporary resources, and test fixtures.",
+  },
+  "lambda-functional-tools": {
+    what: "Small functional helpers such as lambda, map, filter, reduce, and comprehensions.",
+    why: "They can make simple transformations concise, but should stay readable.",
+    where: "Used in data transforms, sorting keys, quick predicates, and pipeline-style operations.",
+  },
+  "arrays-linked-lists": {
+    what: "Core linear data structures used to store ordered values.",
+    why: "Understanding them builds intuition for memory, access time, insertion cost, and algorithm choices.",
+    where: "Used in interviews, parsers, queues, caches, and performance-sensitive logic.",
+  },
+  "stacks-queues": {
+    what: "Structures for last-in-first-out and first-in-first-out processing.",
+    why: "They model real workflows like undo history, background tasks, breadth-first search, and event processing.",
+    where: "Used in schedulers, parsers, graph traversal, message systems, and async workers.",
+  },
+  "trees-graphs": {
+    what: "Non-linear structures for hierarchy and relationships.",
+    why: "Many real systems are relationship systems: routes, dependencies, org charts, permissions, and recommendations.",
+    where: "Used in search, routing, dependency graphs, knowledge graphs, compilers, and social networks.",
+  },
+  sorting: {
+    what: "Arranging data by a rule such as time, priority, score, or name.",
+    why: "Sorting makes data usable and is a foundation for ranking, reporting, and efficient searching.",
+    where: "Used in dashboards, leaderboards, logs, analytics, pagination, and recommendation outputs.",
+  },
+  searching: {
+    what: "Finding specific values, records, or paths in a data structure.",
+    why: "Search speed often determines whether a feature feels instant or slow.",
+    where: "Used in APIs, databases, logs, autocomplete, routing, and retrieval systems.",
+  },
+  "sql-joins": {
+    what: "Combining rows from multiple tables based on relationships.",
+    why: "Business data is normalized across tables. Joins turn it into useful answers.",
+    where: "Used in reporting, analytics, API queries, customer views, financial systems, and warehouses.",
+  },
+  "views-indexes": {
+    what: "Views save reusable query logic; indexes speed up lookups.",
+    why: "They improve maintainability and performance when queries become frequent or complex.",
+    where: "Used in PostgreSQL, MySQL, analytics databases, dashboards, and backend APIs.",
+  },
+  "window-functions": {
+    what: "SQL functions that compute values across related rows without collapsing the result.",
+    why: "They solve ranking, running totals, deduplication, and trend analysis elegantly.",
+    where: "Used in analytics, finance, reporting, cohort analysis, and warehouse transformations.",
+  },
+  ctes: {
+    what: "Common table expressions: named temporary result sets inside a SQL query.",
+    why: "They break complex SQL into readable steps and make transformations easier to debug.",
+    where: "Used in analytics SQL, dbt models, warehouse transformations, and reporting queries.",
+  },
+  postgresql: {
+    what: "A production-grade relational database with strong SQL, indexing, transactions, and extensions.",
+    why: "It is reliable, widely adopted, and powerful enough for serious backend and analytics workloads.",
+    where: "Used in SaaS apps, internal tools, APIs, reporting systems, and data platforms.",
+  },
+  psycopg2: {
+    what: "A Python adapter for connecting to PostgreSQL.",
+    why: "It lets Python scripts and services read/write relational data directly.",
+    where: "Used in ETL jobs, backend services, admin scripts, and data migration tools.",
+  },
+  fastapi: {
+    what: "A modern Python framework for building APIs with type hints and automatic OpenAPI docs.",
+    why: "It is fast to build with, easy to document, and strong for AI/data backend services.",
+    where: "Used in microservices, ML model serving, internal platforms, admin APIs, and SaaS backends.",
+  },
+  "rest-apis": {
+    what: "HTTP-based interfaces where clients interact with resources through endpoints.",
+    why: "APIs are how frontend apps, mobile apps, workers, and partner systems communicate.",
+    where: "Used in web apps, integrations, data services, AI platforms, and enterprise systems.",
+  },
+  "request-handling": {
+    what: "Parsing incoming API requests, including path params, query params, headers, body data, and files.",
+    why: "Correct request handling is the first boundary between users and your backend logic.",
+    where: "Used in FastAPI routes, webhooks, form submissions, file uploads, and service integrations.",
+  },
+  "response-models": {
+    what: "Structured output schemas that define what an API sends back to clients.",
+    why: "They keep API responses predictable, documented, and easier for frontend or integration teams to consume.",
+    where: "Used in FastAPI, Pydantic, OpenAPI docs, SDK generation, and contract testing.",
+  },
+  validation: {
+    what: "Checking that incoming data has the correct shape, type, and business meaning.",
+    why: "Validation protects systems from bad input and makes errors clear to users and developers.",
+    where: "Used in APIs, ETL pipelines, forms, configs, data contracts, and model inputs.",
+  },
+  authentication: {
+    what: "Verifying who a user or system is.",
+    why: "Without authentication, private data and privileged actions are exposed.",
+    where: "Used in dashboards, APIs, admin tools, enterprise apps, and service-to-service calls.",
+  },
+  pytest: {
+    what: "A Python testing framework for unit, integration, and functional tests.",
+    why: "Tests let teams refactor and ship without guessing whether core behavior still works.",
+    where: "Used in backend services, data pipelines, libraries, CI/CD, and production regression suites.",
+  },
+  "unit-testing": {
+    what: "Testing one small function, class, or behavior in isolation.",
+    why: "Unit tests catch logic errors quickly and make refactoring less risky.",
+    where: "Used in business rules, utility functions, validators, transforms, and service-layer behavior.",
+  },
+  "integration-testing": {
+    what: "Testing how multiple parts work together, such as API plus database or service plus queue.",
+    why: "Many production bugs happen at boundaries, not inside isolated functions.",
+    where: "Used in FastAPI endpoints, database workflows, ETL jobs, third-party integrations, and CI pipelines.",
+  },
+  mocking: {
+    what: "Replacing real dependencies with controlled fake behavior during tests.",
+    why: "Mocking makes tests faster, deterministic, and independent from real APIs, emails, queues, or cloud services.",
+    where: "Used around HTTP calls, payment providers, cloud SDKs, databases, and time-based logic.",
+  },
+  requests: {
+    what: "A Python library for making HTTP requests.",
+    why: "Many integrations start by calling an external API and processing the response.",
+    where: "Used in API clients, automation scripts, scrapers, data ingestion, and integration tests.",
+  },
+  beautifulsoup: {
+    what: "A Python library for parsing HTML and extracting information from web pages.",
+    why: "It makes messy web pages easier to navigate and transform into structured data.",
+    where: "Used in scraping, research tools, price trackers, content extraction, and dataset creation.",
+  },
+  scrapy: {
+    what: "A framework for building larger, structured web scraping systems.",
+    why: "It handles crawling, retries, pipelines, and scale better than one-off scripts.",
+    where: "Used in market intelligence, search indexing, data collection, and competitor analysis.",
+  },
+  "data-collection": {
+    what: "Gathering raw data from APIs, websites, files, databases, forms, or streams.",
+    why: "Analytics, automation, and AI systems are only as useful as the data they can reliably collect.",
+    where: "Used in scraping pipelines, ETL jobs, research tools, integrations, and telemetry systems.",
+  },
+  pandas: {
+    what: "A Python library for tabular data analysis using DataFrames.",
+    why: "It makes cleaning, grouping, joining, and transforming datasets productive.",
+    where: "Used in analytics, ETL prototypes, reporting, notebooks, and data validation.",
+  },
+  numpy: {
+    what: "A fast numerical computing library built around arrays.",
+    why: "It powers much of the Python data ecosystem and makes numerical operations efficient.",
+    where: "Used in data science, ML, scientific computing, vector math, and pandas internals.",
+  },
+  "data-cleaning": {
+    what: "Fixing missing values, invalid types, duplicates, inconsistent labels, and noisy records.",
+    why: "Clean data prevents broken reports, bad model behavior, and misleading business decisions.",
+    where: "Used in pandas, Spark, dbt, warehouses, feature engineering, and data quality checks.",
+  },
+  aggregation: {
+    what: "Combining many records into summaries such as counts, totals, averages, and grouped metrics.",
+    why: "Most business questions need summarized data, not raw event rows.",
+    where: "Used in dashboards, reports, SQL GROUP BY, pandas groupby, Spark aggregations, and KPIs.",
+  },
+  transformations: {
+    what: "Changing data shape, structure, format, or meaning to make it useful.",
+    why: "Transformations bridge the gap between raw source data and business-ready datasets.",
+    where: "Used in ETL, pandas, Spark, dbt, API normalization, and warehouse modeling.",
+  },
+  matplotlib: {
+    what: "A foundational Python plotting library.",
+    why: "It gives precise control for static charts and is widely supported across notebooks and reports.",
+    where: "Used in analysis notebooks, reports, monitoring snapshots, and exploratory data work.",
+  },
+  plotly: {
+    what: "A charting library for interactive visualizations.",
+    why: "It helps users explore data through hover states, zooming, filters, and dashboards.",
+    where: "Used in analytics dashboards, business reporting, data apps, and executive views.",
+  },
+  "dashboard-design": {
+    what: "The practice of turning metrics into clear visual decision interfaces.",
+    why: "A dashboard is useful only when it answers the right question quickly.",
+    where: "Used in operations, finance, product analytics, sales, observability, and executive reporting.",
+  },
+  "business-reporting": {
+    what: "Communicating operational or strategic metrics in a format stakeholders can act on.",
+    why: "Good reporting turns raw data into decisions and accountability.",
+    where: "Used in finance, sales, product, operations, HR, and leadership dashboards.",
+  },
+  extract: {
+    what: "The first ETL step: collecting data from files, APIs, databases, streams, or applications.",
+    why: "Bad extraction creates missing, duplicated, or unreliable data downstream.",
+    where: "Used in ETL jobs, warehouse loading, data lakes, scraping systems, and integration pipelines.",
+  },
+  transform: {
+    what: "Cleaning, reshaping, joining, validating, and enriching raw data.",
+    why: "Raw data rarely matches business needs. Transformations make it trustworthy and usable.",
+    where: "Used in pandas jobs, Spark pipelines, dbt models, warehouses, and reporting layers.",
+  },
+  load: {
+    what: "Writing processed data into a target like PostgreSQL, S3, Snowflake, or Redshift.",
+    why: "Loading makes data available for apps, dashboards, models, or other teams.",
+    where: "Used in ETL/ELT pipelines, lakehouse systems, warehouses, and backend data syncs.",
+  },
+  "csv-processing": {
+    what: "Reading, validating, transforming, and writing comma-separated tabular files.",
+    why: "CSV remains one of the most common ways businesses exchange data.",
+    where: "Used in imports, exports, vendor feeds, reports, batch jobs, and early-stage ETL pipelines.",
+  },
+  "pipeline-design": {
+    what: "Designing the steps, dependencies, retries, validation, and outputs of a data workflow.",
+    why: "A pipeline is production software; design determines reliability, observability, and recovery.",
+    where: "Used in ETL jobs, Airflow DAGs, ML feature pipelines, data syncs, and platform workflows.",
+  },
+  dags: {
+    what: "Directed acyclic graphs: dependency graphs that describe workflow order.",
+    why: "They make pipelines observable, schedulable, and easier to recover when steps fail.",
+    where: "Used in Airflow, Dagster, Prefect, ML pipelines, and data platforms.",
+  },
+  operators: {
+    what: "Reusable task building blocks inside workflow orchestrators.",
+    why: "They standardize common work such as running Python, SQL, Spark, shell, or cloud tasks.",
+    where: "Used in Airflow DAGs, managed workflows, ETL jobs, and platform automation.",
+  },
+  scheduling: {
+    what: "Running jobs at specific times, intervals, or in response to dependencies.",
+    why: "Reliable schedules turn manual work into repeatable production workflows.",
+    where: "Used in reports, ETL, backups, notifications, ML retraining, and monitoring jobs.",
+  },
+  monitoring: {
+    what: "Tracking health, failures, latency, throughput, cost, and data quality.",
+    why: "A production system is not real until you can see when it breaks and why.",
+    where: "Used in APIs, pipelines, streaming jobs, databases, infrastructure, and AI systems.",
+  },
+  pyspark: {
+    what: "Python API for Apache Spark, used for distributed data processing.",
+    why: "It lets Python process datasets that are too large for a single machine.",
+    where: "Used in big data ETL, lakehouse pipelines, analytics platforms, and ML feature generation.",
+  },
+  dataframes: {
+    what: "Table-like data structures with named columns and row operations.",
+    why: "DataFrames give engineers a practical interface for filtering, joining, aggregating, and transforming data.",
+    where: "Used in pandas, PySpark, Polars, notebooks, ETL jobs, and analytics pipelines.",
+  },
+  "spark-sql": {
+    what: "SQL interface for querying distributed Spark data.",
+    why: "It combines SQL productivity with Spark's distributed processing power.",
+    where: "Used in lakehouses, batch ETL, warehouse staging, and large analytical transformations.",
+  },
+  partitioning: {
+    what: "Splitting data by keys such as date, region, or customer to improve access and processing.",
+    why: "Good partitioning can reduce cost and speed up queries dramatically.",
+    where: "Used in Spark, S3 data lakes, Delta Lake, Iceberg, BigQuery, and warehouses.",
+  },
+  optimization: {
+    what: "Improving performance, memory, cost, or reliability after measuring bottlenecks.",
+    why: "Optimization keeps systems usable and affordable as data and traffic grow.",
+    where: "Used in APIs, SQL queries, Spark jobs, databases, caching, and infrastructure.",
+  },
+  "kafka-producers": {
+    what: "Applications that publish events into Kafka topics.",
+    why: "They decouple data creation from downstream consumers and enable real-time systems.",
+    where: "Used in order tracking, payments, telemetry, clickstreams, IoT, and event-driven platforms.",
+  },
+  "kafka-consumers": {
+    what: "Applications that read events from Kafka topics.",
+    why: "They let multiple systems react independently to the same stream of events.",
+    where: "Used in notifications, fraud checks, analytics, search indexing, and streaming ETL.",
+  },
+  "topics-partitions": {
+    what: "Kafka topics organize events; partitions split topics for scale and parallelism.",
+    why: "They determine throughput, ordering, replay behavior, and consumer scaling.",
+    where: "Used in every Kafka-based streaming architecture.",
+  },
+  "spark-streaming": {
+    what: "Spark's API for processing continuous or micro-batch streams.",
+    why: "It connects big-data transformations with near-real-time data flows.",
+    where: "Used in fraud detection, live dashboards, operational analytics, and event pipelines.",
+  },
+  "aws-s3": {
+    what: "AWS object storage commonly used for raw files, data lakes, and assets.",
+    why: "It is durable, cheap, scalable, and integrates with most AWS data services.",
+    where: "Used in data lakes, file ingestion, backups, ML datasets, and static assets.",
+  },
+  "aws-lambda": {
+    what: "Serverless compute that runs code in response to events.",
+    why: "It is useful for lightweight automation without managing servers.",
+    where: "Used in file triggers, API glue, scheduled jobs, notifications, and data ingestion.",
+  },
+  "aws-glue": {
+    what: "AWS managed data integration and ETL service.",
+    why: "It helps catalog, transform, and move data across AWS data platforms.",
+    where: "Used in S3 data lakes, ETL jobs, crawlers, catalogs, and warehouse loading.",
+  },
+  athena: {
+    what: "AWS serverless SQL query engine for data stored in S3.",
+    why: "It lets teams query lake data without running database servers.",
+    where: "Used in ad hoc analytics, data lake exploration, audit queries, and cost-effective reporting.",
+  },
+  redshift: {
+    what: "AWS cloud data warehouse for large-scale analytical queries.",
+    why: "It is built for reporting, BI, and high-volume warehouse workloads.",
+    where: "Used in enterprise analytics, dashboards, finance reporting, and customer intelligence.",
+  },
+  dbt: {
+    what: "A transformation framework for building tested, documented SQL models.",
+    why: "It brings software engineering discipline to analytics and warehouse transformations.",
+    where: "Used in analytics engineering, warehouse modeling, metrics layers, and data quality workflows.",
+  },
+  "delta-lake": {
+    what: "A lakehouse storage layer that adds ACID transactions and versioning to data lakes.",
+    why: "It makes data lakes more reliable for production analytics and ML workflows.",
+    where: "Used in Spark lakehouses, medallion architectures, batch pipelines, and ML features.",
+  },
+  docker: {
+    what: "A container platform that packages apps with their dependencies.",
+    why: "It makes local, staging, and production environments more consistent.",
+    where: "Used in APIs, ETL jobs, CI/CD, ML serving, local dev environments, and deployments.",
+  },
+  kubernetes: {
+    what: "A container orchestration platform for running services at scale.",
+    why: "It handles deployment, scaling, service discovery, and recovery for containerized systems.",
+    where: "Used in production platforms, microservices, data jobs, model serving, and enterprise infrastructure.",
+  },
+  cicd: {
+    what: "Continuous integration and continuous delivery pipelines that test and ship code automatically.",
+    why: "CI/CD reduces manual release risk and catches problems before production.",
+    where: "Used in GitHub Actions, GitLab CI, Jenkins, API deployments, data jobs, and platform releases.",
+  },
+  "ci-cd": {
+    what: "Continuous integration and continuous delivery pipelines that test and ship code automatically.",
+    why: "CI/CD reduces manual release risk and catches problems before production.",
+    where: "Used in GitHub Actions, GitLab CI, Jenkins, API deployments, data jobs, and platform releases.",
+  },
+  "data-quality": {
+    what: "Checks that data is complete, valid, fresh, unique, and aligned with expectations.",
+    why: "Bad data creates bad decisions, bad models, and broken user experiences.",
+    where: "Used in ETL, warehouses, data contracts, dashboards, ML features, and compliance systems.",
+  },
+  "enterprise-architecture": {
+    what: "Designing systems that fit business scale, reliability, governance, and team ownership.",
+    why: "Enterprise systems fail when tools are chosen without architecture, ownership, and operating model.",
+    where: "Used in platforms, cloud migrations, AI systems, data warehouses, and internal engineering products.",
+  },
+};
+
+export const ROADMAP_TOPIC_SUPPLEMENTS: RoadmapTopicSupplement[] = [
+  {
+    topicId: "python-fundamentals",
+    tools: ["Python 3.12+", "venv", "pip", "VS Code", "ruff", "JSON/CSV"],
+    outcomes: ["Write clean scripts", "Handle files safely", "Break logic into functions", "Debug beginner runtime errors"],
+  },
+  {
+    topicId: "oop-python",
+    tools: ["dataclasses", "abc", "typing.Protocol", "UML-lite sketches", "pytest"],
+    outcomes: ["Model real domains", "Separate state from behavior", "Use composition cleanly", "Avoid over-engineered inheritance"],
+  },
+  {
+    topicId: "advanced-python",
+    tools: ["itertools", "functools", "contextlib", "logging", "regex", "ruff"],
+    outcomes: ["Read production code confidently", "Write memory-aware processors", "Add reusable wrappers", "Build cleaner utility libraries"],
+  },
+  {
+    topicId: "dsa-python",
+    tools: ["collections", "heapq", "bisect", "deque", "networkx"],
+    outcomes: ["Choose the right structure", "Solve graph/path problems", "Reason about complexity", "Prepare for engineering interviews"],
+  },
+  {
+    topicId: "sql-postgresql",
+    tools: ["PostgreSQL", "psycopg2", "SQLAlchemy Core", "DBeaver", "pgAdmin"],
+    outcomes: ["Design normalized tables", "Write analytical SQL", "Optimize slow queries", "Connect Python to relational data"],
+  },
+  {
+    topicId: "fastapi-development",
+    tools: ["FastAPI", "Pydantic", "SQLAlchemy", "Alembic", "Uvicorn", "JWT"],
+    outcomes: ["Build production APIs", "Validate request/response data", "Document endpoints", "Add auth and database access"],
+  },
+  {
+    topicId: "testing-python",
+    tools: ["pytest", "pytest-cov", "factory-boy", "responses", "moto", "GitHub Actions"],
+    outcomes: ["Write unit tests", "Mock external systems", "Test APIs", "Run checks in CI"],
+  },
+  {
+    topicId: "web-scraping",
+    tools: ["requests", "BeautifulSoup", "Scrapy", "Playwright", "robots.txt"],
+    outcomes: ["Collect web data responsibly", "Parse messy HTML", "Handle pagination", "Persist scraped datasets"],
+  },
+  {
+    topicId: "pandas-numpy",
+    tools: ["pandas", "NumPy", "Jupyter", "pyarrow", "Polars"],
+    outcomes: ["Clean datasets", "Aggregate business metrics", "Transform files for ETL", "Detect missing or invalid records"],
+  },
+  {
+    topicId: "visualization",
+    tools: ["Matplotlib", "Plotly", "Streamlit", "Dash", "Power BI basics"],
+    outcomes: ["Tell data stories", "Build interactive dashboards", "Choose useful charts", "Explain insights to non-engineers"],
+  },
+  {
+    topicId: "etl-pipelines",
+    tools: ["pandas", "PostgreSQL", "SQLAlchemy", "Parquet", "Great Expectations"],
+    outcomes: ["Build repeatable pipelines", "Validate transformed data", "Load databases safely", "Design incremental jobs"],
+  },
+  {
+    topicId: "airflow-orchestration",
+    tools: ["Apache Airflow", "DAGs", "Operators", "Sensors", "Docker Compose"],
+    outcomes: ["Schedule pipelines", "Handle retries", "Monitor failures", "Design dependency graphs"],
+  },
+  {
+    topicId: "spark-big-data",
+    tools: ["PySpark", "Spark SQL", "Parquet", "Delta Lake", "Databricks"],
+    outcomes: ["Process large datasets", "Tune partitions", "Use distributed joins", "Move from pandas to Spark"],
+  },
+  {
+    topicId: "kafka-streaming",
+    tools: ["Apache Kafka", "Kafka UI", "Spark Streaming", "Schema Registry", "Docker Compose"],
+    outcomes: ["Design event streams", "Build producers/consumers", "Understand partitions", "Process near-real-time data"],
+  },
+  {
+    topicId: "cloud-data-engineering",
+    tools: ["AWS S3", "Lambda", "Glue", "Athena", "Redshift", "IAM"],
+    outcomes: ["Build cloud-native pipelines", "Use S3 as a data lake", "Query lake data", "Understand cloud permissions"],
+  },
+  {
+    topicId: "advanced-de-capstone",
+    tools: ["dbt", "Delta Lake", "Docker", "Kubernetes", "GitHub Actions", "Prometheus/Grafana"],
+    outcomes: ["Ship a portfolio-grade platform", "Connect batch and streaming systems", "Add CI/CD", "Explain architecture trade-offs"],
   },
 ];
 
